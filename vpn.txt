@@ -1,3 +1,1 @@
-# VPN subscription — обновляется раз в час
-# Подписка (вставь в приложение VPN): https://hidashimora.github.io/vpn.txt
-# Или raw: https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/refs/heads/main/vpn.txt
+# Заполняется автоматически при первом пуше и каждый час

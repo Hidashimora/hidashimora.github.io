@@ -1,6 +1,8 @@
 name: Update VPN config
 
 on:
+  push:
+    branches: [main]
   schedule:
     # Каждый час в 0 минут
     - cron: '0 * * * *'
@@ -18,7 +20,8 @@ jobs:
 
       - name: Fetch source configs
         run: |
-          curl -sL "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/26.txt" -o full.txt
+          curl -sLf "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/26.txt" -o full.txt || true
+          touch full.txt
 
       - name: Keep 1/4 of configs and save
         run: |

@@ -21,7 +21,7 @@
   </div>
   <p>Конфигов в подписке примерно четверть от исходного списка (обновление раз в час).</p>
   <script>
-    document.getElementById('sub').href = location.origin + location.pathname.replace(/\/index\.html$/, '') + '/vpn.txt';
+    document.getElementById('sub').href = new URL('vpn.txt', location.href).href;
   </script>
 </body>
 </html>
