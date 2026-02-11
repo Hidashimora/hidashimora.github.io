@@ -4,9 +4,8 @@ on:
   push:
     branches: [main]
   schedule:
-    # Каждый час в 0 минут
     - cron: '0 * * * *'
-  workflow_dispatch: # Ручной запуск из вкладки Actions
+  workflow_dispatch:
 
 jobs:
   update:
@@ -18,37 +17,43 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Fetch source configs
+      - name: Fetch and reduce all 26 lists (1/4 configs each)
         run: |
-          curl -sLf "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/26.txt" -o full.txt || true
-          touch full.txt
+          BASE="https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror"
+          for i in $(seq 1 26); do
+            curl -sLf "${BASE}/${i}.txt" -o full.txt || true
+            touch full.txt
+            grep -E '^(vless|trojan|vmess|ss|hy2)://' full.txt > filtered.txt || true
+            awk 'NR % 4 == 1' filtered.txt > new.txt
+            if [ ! -s new.txt ] && [ -s filtered.txt ]; then
+              cp filtered.txt new.txt
+            fi
+            if [ -s new.txt ]; then
+              cp new.txt "${i}.txt"
+              echo "  ${i}.txt: $(wc -l < "${i}.txt") lines"
+            else
+              echo "  ${i}.txt: no configs, skipped"
+            fi
+          done
 
-      - name: Keep 1/4 of configs and save
+      - name: Keep vpn.txt as copy of 26.txt (backward compatibility)
         run: |
-          # Оставляем только строки с конфигами (vless, trojan, vmess, ss...)
-          grep -E '^(vless|trojan|vmess|ss|hy2)://' full.txt > filtered.txt || true
-          # Берём каждую 4-ю строку ≈ 1/4 от общего числа
-          awk 'NR % 4 == 1' filtered.txt > new_vpn.txt
-          # Если получилось мало конфигов — берём все отфильтрованные
-          if [ ! -s new_vpn.txt ] && [ -s filtered.txt ]; then
-            cp filtered.txt new_vpn.txt
-          fi
-          # Перезаписываем vpn.txt только если есть конфиги (не ломаем подписку пустым файлом)
-          if [ -s new_vpn.txt ]; then
-            cp new_vpn.txt vpn.txt
-            wc -l vpn.txt
-          else
-            echo "No configs from source; leaving existing vpn.txt unchanged"
+          if [ -f 26.txt ] && [ -s 26.txt ]; then
+            cp 26.txt vpn.txt
+            echo "vpn.txt updated from 26.txt"
           fi
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add vpn.txt
+          for f in $(seq 1 26 | sed 's/$/.txt/') vpn.txt; do
+            [ -f "$f" ] && git add "$f"
+          done
           if git diff --staged --quiet; then
             echo "No changes"
           else
-            git commit -m "chore: update VPN config ($(date -u +%Y-%m-%dT%H:%MZ))"
+            git status --short
+            git commit -m "chore: update VPN configs 1-26 and vpn.txt ($(date -u +%Y-%m-%dT%H:%MZ))"
             git push
           fi
