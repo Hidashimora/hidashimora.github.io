@@ -23,7 +23,7 @@ VPN-серверы помогают **обходить блокировки**: �
 
 Проблема: в популярных списках бывает **больше тысячи нод**. Когда клиент тянет и обрабатывает столько конфигов, начинают тупить все подряд — интерфейс подвисает, список грузится вечность, приложение может вылетать.
 
-Здесь лежат **укороченные подписки**: для каждого из 26 списков [goida-vpn-configs](https://github.com/AvenCores/goida-vpn-configs) свой файл с примерно **четвертью** серверов. Меньше конфигов — меньше нагрузка, всё работает плавно. Списки подтягиваются **автоматически**, как только обновляются исходные конфиги (проверка каждые 10 минут). Вручную ничего настраивать не надо.
+Здесь лежат **укороченные подписки**: для каждого из 26 списков [goida-vpn-configs](https://github.com/AvenCores/goida-vpn-configs) свой файл с примерно **четвертью** серверов. Меньше конфигов — меньше нагрузка, всё работает плавно. Списки подтягиваются **автоматически** — проверка каждые **30 секунд** не поддерживается в GitHub Actions (минимум по расписанию — раз в минуту), поэтому workflow запускается **каждую минуту** и при каждом пуше. Вручную ничего настраивать не надо.
 
 ---
 
@@ -47,39 +47,39 @@ VPN-серверы помогают **обходить блокировки**: �
 
 | Куда вставлять | Ссылка |
 |-----------------|--------|
-| Сайт | `https://hidashimora.github.io/vpn.txt` |
-| Raw (для клиентов) | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/vpn.txt` |
+| Сайт | `https://hidashimora.github.io/configs/vpn.txt` |
+| Raw (для клиентов) | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/vpn.txt` |
 
 **Все 26 укороченных списков** — копируй нужную ссылку:
 
 | № | Raw-ссылка |
 |---|------------|
-| 1 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/1.txt` |
-| 2 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/2.txt` |
-| 3 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/3.txt` |
-| 4 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/4.txt` |
-| 5 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/5.txt` |
-| 6 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/6.txt` |
-| 7 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/7.txt` |
-| 8 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/8.txt` |
-| 9 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/9.txt` |
-| 10 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/10.txt` |
-| 11 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/11.txt` |
-| 12 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/12.txt` |
-| 13 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/13.txt` |
-| 14 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/14.txt` |
-| 15 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/15.txt` |
-| 16 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/16.txt` |
-| 17 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/17.txt` |
-| 18 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/18.txt` |
-| 19 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/19.txt` |
-| 20 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/20.txt` |
-| 21 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/21.txt` |
-| 22 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/22.txt` |
-| 23 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/23.txt` |
-| 24 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/24.txt` |
-| 25 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/25.txt` |
-| 26 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/26.txt` |
+| 1 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.txt` |
+| 2 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/2.txt` |
+| 3 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/3.txt` |
+| 4 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/4.txt` |
+| 5 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/5.txt` |
+| 6 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/6.txt` |
+| 7 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/7.txt` |
+| 8 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/8.txt` |
+| 9 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/9.txt` |
+| 10 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/10.txt` |
+| 11 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/11.txt` |
+| 12 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/12.txt` |
+| 13 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/13.txt` |
+| 14 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/14.txt` |
+| 15 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/15.txt` |
+| 16 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/16.txt` |
+| 17 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/17.txt` |
+| 18 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/18.txt` |
+| 19 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/19.txt` |
+| 20 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/20.txt` |
+| 21 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/21.txt` |
+| 22 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/22.txt` |
+| 23 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/23.txt` |
+| 24 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/24.txt` |
+| 25 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/25.txt` |
+| 26 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/26.txt` |
 
 ---
 
@@ -122,17 +122,18 @@ VPN-серверы помогают **обходить блокировки**: �
 ## 🗂 Структура репозитория
 
 ```
-.github/workflows/   — автообновление подписок (каждые ~10 мин и при пуше)
+.github/workflows/   — автообновление подписок (каждую минуту и при пуше)
 ├── update-vpn-config.yml
 
-1.txt … 26.txt       — укороченные подписки (примерно 1/4 серверов каждая)
-vpn.txt              — копия 26.txt (удобная главная ссылка)
+configs/             — папка с укороченными подписками (1/4 серверов)
+├── 1.txt … 26.txt  — по одному файлу на каждый список
+├── vpn.txt          — копия 26.txt (главная ссылка для клиента)
 
 index.html           — страница с кнопкой «Скопировать» и ссылкой на подписку
 README.md            — этот файл
 ```
 
-Файлы `1.txt`–`26.txt` и `vpn.txt` создаёт и обновляет workflow; вручную их не трогаем.
+Файлы в `configs/` создаёт и обновляет workflow; вручную их не трогаем.
 
 ---
 
@@ -175,4 +176,4 @@ README.md            — этот файл
 
 ## ⚙️ Как устроено обновление
 
-Всё крутится на **GitHub Actions**. Workflow запускается при каждом пуше в `main` и **каждые 10 минут** по расписанию (исходные списки goida обновляются примерно раз в 9 минут — мы подтягиваем изменения почти сразу). Для каждого номера 1–26 скрипт качает соответствующий список, оставляет только строки с конфигами (vless, trojan, vmess, ss, hy2), берёт каждую 4‑ю строку и сохраняет в свой файл. Файл `vpn.txt` — копия `26.txt`, чтобы главная ссылка не менялась. Свой сервер и PHP не нужны, всё на GitHub.
+Всё крутится на **GitHub Actions**. Workflow запускается при каждом пуше в `main` и **каждую минуту** по расписанию (интервал 30 секунд в GitHub Actions недоступен — минимум для cron это 1 минута). Для каждого номера 1–26 скрипт качает соответствующий список, оставляет только строки с конфигами (vless, trojan, vmess, ss, hy2), берёт каждую 4‑ю строку и сохраняет в папку `configs/`. Файл `configs/vpn.txt` — копия `configs/26.txt`. Свой сервер и PHP не нужны, всё на GitHub.

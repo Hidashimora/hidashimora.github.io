@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
   schedule:
-    # Проверяем обновления каждые 10 мин (исходные списки goida обновляются ~каждые 9 мин)
-    - cron: '*/10 * * * *'
+    # Максимальная частота в GitHub Actions — раз в минуту (30 сек cron не поддерживает)
+    - cron: '* * * * *'
   workflow_dispatch:
 
 jobs:
@@ -20,6 +20,7 @@ jobs:
 
       - name: Fetch and reduce all 26 lists (1/4 configs each)
         run: |
+          mkdir -p configs
           BASE="https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror"
           for i in $(seq 1 26); do
             curl -sLf "${BASE}/${i}.txt" -o full.txt || true
@@ -30,31 +31,34 @@ jobs:
               cp filtered.txt new.txt
             fi
             if [ -s new.txt ]; then
-              cp new.txt "${i}.txt"
-              echo "  ${i}.txt: $(wc -l < "${i}.txt") lines"
+              cp new.txt "configs/${i}.txt"
+              echo "  configs/${i}.txt: $(wc -l < "configs/${i}.txt") lines"
             else
-              echo "  ${i}.txt: no configs, skipped"
+              echo "  configs/${i}.txt: no configs, skipped"
             fi
           done
 
       - name: Keep vpn.txt as copy of 26.txt (backward compatibility)
         run: |
-          if [ -f 26.txt ] && [ -s 26.txt ]; then
-            cp 26.txt vpn.txt
-            echo "vpn.txt updated from 26.txt"
+          if [ -f configs/26.txt ] && [ -s configs/26.txt ]; then
+            cp configs/26.txt configs/vpn.txt
+            echo "configs/vpn.txt updated from 26.txt"
           fi
+
+      - name: Remove old config files from repo root (if any)
+        run: |
+          for f in $(seq 1 26 | sed 's/$/.txt/') vpn.txt; do rm -f "$f"; done
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for f in $(seq 1 26 | sed 's/$/.txt/') vpn.txt; do
-            [ -f "$f" ] && git add "$f"
-          done
+          git add configs/
+          git add -u
           if git diff --staged --quiet; then
             echo "No changes"
           else
             git status --short
-            git commit -m "chore: update VPN configs 1-26 and vpn.txt ($(date -u +%Y-%m-%dT%H:%MZ))"
+            git commit -m "chore: update VPN configs ($(date -u +%Y-%m-%dT%H:%MZ))"
             git push
           fi
