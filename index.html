@@ -140,7 +140,7 @@
              :style="'animation-delay: ' + (index * 35) + 'ms'">
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div class="flex items-center gap-3 min-w-0">
-              <span class="text-xl font-bold text-[#e4e4e7] shrink-0">#<span x-text="config.id"></span></span>
+              <span class="text-xl font-bold text-[#e4e4e7] shrink-0" x-text="config.id === 26 ? 'Конфиг номер 26 (Обход SNI/CIDR белых списков)' : 'Конфиг номер ' + config.id"></span>
               <div class="flex flex-wrap gap-1.5">
                 <template x-if="isRecommended(config.id)">
                   <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">Рекоменд.</span>
