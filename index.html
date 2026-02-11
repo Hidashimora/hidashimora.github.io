@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VPN подписка</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 480px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { font-size: 1.25rem; }
+    a { color: #0969da; word-break: break-all; }
+    .url-box { background: #f6f8fa; padding: 0.75rem; border-radius: 6px; margin: 1rem 0; }
+    .url-box a { display: block; }
+    p { color: #57606a; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>VPN подписка</h1>
+  <p>В приложении VPN укажи ссылку на подписку (Subscription URL):</p>
+  <div class="url-box">
+    <a href="./vpn.txt" id="sub">https://hidashimora.github.io/vpn.txt</a>
+  </div>
+  <p>Конфигов в подписке примерно четверть от исходного списка (обновление раз в час).</p>
+  <script>
+    document.getElementById('sub').href = location.origin + location.pathname.replace(/\/index\.html$/, '') + '/vpn.txt';
+  </script>
+</body>
+</html>
