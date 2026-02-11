@@ -3,62 +3,64 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>VPN подписки — обход блокировок</title>
-  <meta name="description" content="Укороченные списки VPN для V2Ray, VLESS, Hysteria, Trojan, VMess. Обновление раз в минуту. Рекомендованные списки 1, 6, 22–25; №26 — обход SNI/CIDR.">
+  <title>Free configs</title>
+  <meta name="description" content="Укороченные VPN-подписки V2Ray, VLESS, Hysteria, Trojan, VMess. Обновление раз в минуту.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: { blue: '#3670A0', yellow: '#ffdd54', dark: '#0f172a', panel: '#1e293b' }
-          }
-        }
-      }
-    };
-  </script>
   <style>
     [x-cloak] { display: none !important; }
     html { scrollbar-gutter: stable; }
-    body::before, body::after {
+    body {
+      background: #0a0a0d;
+      color: #e4e4e7;
+    }
+    /* Тонкая сетка для глубины */
+    .bg-mesh {
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    /* Свечение под карточкой при наведении */
+    .card-glow {
+      position: relative;
+    }
+    .card-glow::before {
       content: '';
-      position: fixed;
-      border-radius: 50%;
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), transparent 50%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease;
       pointer-events: none;
-      z-index: -1;
-      filter: blur(100px);
-      opacity: 0.5;
     }
-    body::before {
-      width: 70vw; height: 70vw;
-      background: radial-gradient(circle, rgba(54, 112, 160, 0.4) 0%, transparent 70%);
-      top: -20%; left: -20%;
-      animation: driftBlue 25s infinite alternate ease-in-out;
+    .card-glow:hover::before { opacity: 1; }
+    /* Появление карточек по очереди */
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    body::after {
-      width: 60vw; height: 60vw;
-      background: radial-gradient(circle, rgba(255, 221, 84, 0.2) 0%, transparent 70%);
-      bottom: -20%; right: -20%;
-      animation: driftYellow 30s infinite alternate-reverse ease-in-out;
+    .animate-card-in {
+      opacity: 0;
+      animation: cardIn 0.4s ease forwards;
     }
-    @keyframes driftBlue {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(15vw, 15vh) scale(1.1); }
-      100% { transform: translate(0, 20vh) scale(1); }
-    }
-    @keyframes driftYellow {
-      0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-15vw, -15vh) scale(1.1); }
-      100% { transform: translate(-10vw, -20vh) scale(1); }
+    .url-box {
+      word-break: break-all;
+      font-family: ui-monospace, monospace;
     }
     @media (prefers-reduced-motion: reduce) {
-      body::before, body::after { animation: none; }
+      .animate-card-in { animation: none; opacity: 1; }
     }
   </style>
 </head>
-<body class="min-h-screen bg-gray-50 text-gray-900 dark:bg-brand-dark dark:text-gray-100 transition-colors font-sans antialiased"
+<body class="min-h-screen bg-mesh font-sans antialiased"
       x-data="{
         filterType: 'all',
         base: 'https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/',
@@ -76,135 +78,115 @@
         isSni(id) { return this.sni.includes(id); },
         copyUrl(url, btn) {
           navigator.clipboard.writeText(url).then(() => {
-            btn.classList.add('!bg-green-600');
-            btn.querySelector('.copy-text').textContent = 'Скопировано!';
-            btn.querySelector('.fa-copy').classList.add('hidden');
-            btn.querySelector('.fa-check').classList.remove('hidden');
+            const t = btn.querySelector('.copy-text');
+            const copyIco = btn.querySelector('.fa-copy');
+            const checkIco = btn.querySelector('.fa-check');
+            btn.classList.add('!bg-emerald-600');
+            if (t) t.textContent = 'Скопировано';
+            if (copyIco) copyIco.classList.add('hidden');
+            if (checkIco) checkIco.classList.remove('hidden');
             setTimeout(() => {
-              btn.classList.remove('!bg-green-600');
-              btn.querySelector('.copy-text').textContent = 'Скопировать';
-              btn.querySelector('.fa-copy').classList.remove('hidden');
-              btn.querySelector('.fa-check').classList.add('hidden');
+              btn.classList.remove('!bg-emerald-600');
+              if (t) t.textContent = 'Скопировать';
+              if (copyIco) copyIco.classList.remove('hidden');
+              if (checkIco) checkIco.classList.add('hidden');
             }, 2000);
           }).catch(() => {
-            btn.querySelector('.copy-text').textContent = 'Ошибка';
-            setTimeout(() => { btn.querySelector('.copy-text').textContent = 'Скопировать'; }, 1500);
+            const t = btn.querySelector('.copy-text');
+            if (t) { t.textContent = 'Ошибка'; setTimeout(() => { t.textContent = 'Скопировать'; }, 1500); }
           });
         }
       }">
   <!-- Header -->
-  <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/80 dark:bg-brand-dark/80 border-b border-gray-200 dark:border-gray-700 shadow-sm">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <div class="w-9 h-9 rounded-xl bg-brand-blue/20 flex items-center justify-center text-brand-blue dark:text-blue-400">
-          <i class="fa-solid fa-shield-halved"></i>
+  <header class="sticky top-0 z-50 border-b border-white/5 bg-[#0a0a0d]/90 backdrop-blur-md">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+          <i class="fa-solid fa-list text-sm"></i>
         </div>
-        <span class="font-bold text-lg tracking-tight hidden sm:inline">VPN подписки</span>
+        <span class="font-semibold text-[#e4e4e7] tracking-tight">Free configs</span>
       </div>
       <a href="https://github.com/Hidashimora/free-vpn-anti-rkn" target="_blank" rel="noopener noreferrer"
-         class="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-gray-700 dark:text-gray-200 font-medium transition-all">
-        <i class="fab fa-github text-lg"></i>
+         class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-[#a1a1aa] hover:text-[#e4e4e7] text-sm font-medium transition-colors duration-200">
+        <i class="fab fa-github"></i>
         <span class="hidden sm:inline">GitHub</span>
       </a>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 relative z-0">
-    <!-- Hero -->
-    <div class="text-center mb-10 sm:mb-14">
-      <h1 class="text-3xl sm:text-4xl font-extrabold mb-3 tracking-tight">Укороченные VPN подписки</h1>
-      <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-sm sm:text-base">
-        Коллекция <strong>V2Ray</strong> / <strong>VLESS</strong> / <strong>Hysteria</strong> / <strong>Trojan</strong> / <strong>VMess</strong>. Обновляются <strong>раз в минуту</strong>. Скачали ссылку — вставили в клиент — подключились.
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <!-- Intro -->
+    <section class="text-center mb-10 sm:mb-12">
+      <h1 class="text-2xl sm:text-3xl font-bold text-[#e4e4e7] mb-2 tracking-tight">Подписки без лагов</h1>
+      <p class="text-[#71717a] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        26 укороченных списков (~¼ серверов). Копируйте ссылку — вставляйте в v2rayNG, Throne, Hiddify и подключайтесь.
       </p>
-    </div>
-
-    <!-- 3 steps -->
-    <div class="grid sm:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-14">
-      <div class="bg-white/70 dark:bg-brand-panel/70 backdrop-blur-md p-6 rounded-2xl border border-gray-200 dark:border-white/5 shadow-sm hover:shadow-md transition-all">
-        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4">
-          <i class="fa-solid fa-copy text-xl"></i>
-        </div>
-        <h3 class="font-bold text-lg mb-1">1. Скопируйте</h3>
-        <p class="text-gray-500 dark:text-gray-400 text-sm">Выберите список ниже и нажмите «Скопировать».</p>
-      </div>
-      <div class="bg-white/70 dark:bg-brand-panel/70 backdrop-blur-md p-6 rounded-2xl border border-gray-200 dark:border-white/5 shadow-sm hover:shadow-md transition-all">
-        <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4">
-          <i class="fa-solid fa-file-import text-xl"></i>
-        </div>
-        <h3 class="font-bold text-lg mb-1">2. Импортируйте</h3>
-        <p class="text-gray-500 dark:text-gray-400 text-sm">Вставьте ссылку в клиент (v2rayNG, Throne, Hiddify и др.).</p>
-      </div>
-      <div class="bg-white/70 dark:bg-brand-panel/70 backdrop-blur-md p-6 rounded-2xl border border-gray-200 dark:border-white/5 shadow-sm hover:shadow-md transition-all">
-        <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-4">
-          <i class="fa-solid fa-bolt text-xl"></i>
-        </div>
-        <h3 class="font-bold text-lg mb-1">3. Подключитесь</h3>
-        <p class="text-gray-500 dark:text-gray-400 text-sm">Запустите проверку пинга и выберите сервер.</p>
-      </div>
-    </div>
+    </section>
 
     <!-- Filters -->
-    <div class="flex flex-wrap items-center gap-3 mb-6">
-      <span class="text-xs font-bold text-gray-400 uppercase tracking-wider hidden sm:inline">Фильтр:</span>
-      <div class="flex flex-wrap gap-2">
-        <button @click="filterType = 'all'"
-                :class="filterType === 'all' ? 'bg-brand-blue text-white shadow-md border-brand-blue' : 'bg-white dark:bg-white/5 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-600'"
-                class="px-4 py-2 rounded-xl text-sm font-bold border-2 transition-all">
-          Все
-        </button>
-        <button @click="filterType = 'recommended'"
-                :class="filterType === 'recommended' ? 'bg-amber-400 text-amber-900 shadow-md border-amber-400' : 'bg-amber-400/10 text-amber-700 dark:text-amber-400 border-transparent'"
-                class="px-3 py-2 rounded-xl text-xs font-bold border-2 transition-all flex items-center gap-1.5">
-          <i class="fa-solid fa-star text-[10px]"></i>
-          Рекомендованные
-        </button>
-        <button @click="filterType = 'sni'"
-                :class="filterType === 'sni' ? 'bg-purple-600 text-white shadow-md border-purple-600' : 'bg-purple-600/10 text-purple-600 dark:text-purple-400 border-transparent'"
-                class="px-3 py-2 rounded-xl text-xs font-bold border-2 transition-all flex items-center gap-1.5">
-          <i class="fa-solid fa-unlock-keyhole text-[10px]"></i>
-          SNI/CIDR
-        </button>
-      </div>
-    </div>
+    <nav class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-8" aria-label="Фильтр списков">
+      <button @click="filterType = 'all'"
+              :class="filterType === 'all' ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
+              class="px-4 py-2 rounded-lg text-sm font-medium border transition-all duration-200">
+        Все
+      </button>
+      <button @click="filterType = 'recommended'"
+              :class="filterType === 'recommended' ? 'bg-amber-500/20 text-amber-400 border-amber-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
+              class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
+        <i class="fa-solid fa-star text-[10px]"></i>
+        Рекомендованные
+      </button>
+      <button @click="filterType = 'sni'"
+              :class="filterType === 'sni' ? 'bg-violet-500/20 text-violet-400 border-violet-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
+              class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
+        <i class="fa-solid fa-unlock-keyhole text-[10px]"></i>
+        SNI/CIDR
+      </button>
+    </nav>
 
-    <!-- Cards grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-      <template x-for="config in filtered" :key="config.id">
-        <div class="bg-white dark:bg-brand-panel rounded-2xl border border-gray-200 dark:border-gray-700 p-5 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex flex-col">
-          <div class="flex items-start justify-between mb-4">
-            <span class="font-extrabold text-3xl text-gray-900 dark:text-white">#<span x-text="config.id"></span></span>
-            <div class="flex flex-col gap-1 items-end">
-              <template x-if="isRecommended(config.id)">
-                <span class="bg-amber-400 text-amber-900 text-[9px] font-bold px-2 py-0.5 rounded-lg uppercase">Рекоменд.</span>
-              </template>
-              <template x-if="isSni(config.id)">
-                <span class="bg-purple-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-lg uppercase">SNI/CIDR</span>
-              </template>
+    <!-- Cards: full URL + copy -->
+    <div class="space-y-4">
+      <template x-for="(config, index) in filtered" :key="config.id">
+        <div class="card-glow rounded-xl border border-white/10 bg-[#141418] p-4 sm:p-5 shadow-lg hover:border-white/15 transition-all duration-300 animate-card-in"
+             :style="'animation-delay: ' + (index * 35) + 'ms'">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div class="flex items-center gap-3 min-w-0">
+              <span class="text-xl font-bold text-[#e4e4e7] shrink-0">#<span x-text="config.id"></span></span>
+              <div class="flex flex-wrap gap-1.5">
+                <template x-if="isRecommended(config.id)">
+                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">Рекоменд.</span>
+                </template>
+                <template x-if="isSni(config.id)">
+                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-violet-500/20 text-violet-400 border border-violet-500/30">SNI/CIDR</span>
+                </template>
+              </div>
             </div>
+            <button type="button"
+                    :data-url="base + config.id + '.txt'"
+                    @click="copyUrl($event.currentTarget.getAttribute('data-url'), $event.currentTarget)"
+                    class="shrink-0 w-full sm:w-auto py-2.5 px-4 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 font-medium text-sm flex items-center justify-center gap-2 border border-cyan-500/30 transition-all duration-200 active:scale-[0.98]">
+              <i class="fa-regular fa-copy"></i>
+              <i class="fa-solid fa-check hidden"></i>
+              <span class="copy-text">Скопировать</span>
+            </button>
           </div>
-          <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Подписка · ~¼ серверов</p>
-          <button type="button"
-                  :data-url="base + config.id + '.txt'"
-                  @click="copyUrl($event.currentTarget.getAttribute('data-url'), $event.currentTarget)"
-                  class="mt-auto w-full py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 bg-brand-blue hover:bg-blue-600 text-white transition-all active:scale-[0.98]">
-            <i class="fa-regular fa-copy"></i>
-            <i class="fa-solid fa-check hidden"></i>
-            <span class="copy-text">Скопировать</span>
-          </button>
+          <div class="mt-3 pt-3 border-t border-white/5">
+            <p class="url-box text-[11px] sm:text-xs text-[#71717a] leading-relaxed" x-text="base + config.id + '.txt'"></p>
+          </div>
         </div>
       </template>
     </div>
 
-    <!-- Empty state -->
-    <div x-show="filtered.length === 0" x-cloak class="text-center py-16 bg-white dark:bg-brand-panel rounded-2xl border-2 border-dashed border-gray-200 dark:border-gray-700">
-      <i class="fa-solid fa-filter text-4xl text-gray-300 dark:text-gray-600 mb-4"></i>
-      <p class="text-gray-500 dark:text-gray-400 font-medium">Нет списков по выбранному фильтру</p>
-      <button @click="filterType = 'all'" class="mt-4 px-6 py-2 rounded-xl bg-brand-blue text-white font-bold hover:bg-blue-600 transition">Показать все</button>
+    <!-- Empty -->
+    <div x-show="filtered.length === 0" x-cloak class="text-center py-12 rounded-xl border border-dashed border-white/10 bg-[#141418]">
+      <i class="fa-solid fa-filter text-3xl text-[#52525b] mb-3"></i>
+      <p class="text-[#71717a] text-sm mb-4">Нет списков по выбранному фильтру</p>
+      <button @click="filterType = 'all'" class="px-5 py-2 rounded-lg bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-sm font-medium hover:bg-cyan-500/30 transition-colors">Показать все</button>
     </div>
 
-    <!-- Note -->
-    <p class="mt-10 text-center text-sm text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
-      В <a href="https://github.com/AvenCores/goida-vpn-configs" class="text-brand-blue dark:text-blue-400 hover:underline">AvenCores/goida-vpn-configs</a> рекомендуются списки <strong>1, 6, 22, 23, 24, 25</strong>. Список <strong>№26</strong> — для обхода блокировок по SNI/CIDR (белые списки).
+    <!-- Footer note -->
+    <p class="mt-10 text-center text-xs text-[#52525b] max-w-lg mx-auto leading-relaxed">
+      Рекомендованные в AvenCores/goida-vpn-configs: списки <strong class="text-[#71717a]">1, 6, 22, 23, 24, 25</strong>. <strong class="text-[#71717a]">№26</strong> — обход SNI/CIDR (белые списки).
     </p>
   </main>
 </body>
