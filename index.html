@@ -101,18 +101,11 @@
   <header class="sticky top-0 z-50 border-b border-white/5 bg-[#0a0a0d]/90 backdrop-blur-md">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <h1 class="text-xl sm:text-2xl font-bold text-[#e4e4e7] tracking-tight">Free configs</h1>
-      <div class="flex flex-wrap items-center gap-2 sm:gap-3">
-        <a href="https://github.com/Hidashimora/free-vpn-anti-rkn" target="_blank" rel="noopener noreferrer"
-           class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-[#a1a1aa] hover:text-[#e4e4e7] text-sm sm:text-base font-medium transition-colors duration-200">
-          <i class="fab fa-github"></i>
-          <span>GitHub</span>
-        </a>
-        <a href="https://github.com/AvenCores/goida-vpn-configs" target="_blank" rel="noopener noreferrer"
-           class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-[#a1a1aa] hover:text-[#e4e4e7] text-sm sm:text-base font-medium transition-colors duration-200">
-          <i class="fab fa-github"></i>
-          <span>Оригинал (AvenCores)</span>
-        </a>
-      </div>
+      <a href="https://github.com/Hidashimora/free-vpn-anti-rkn" target="_blank" rel="noopener noreferrer"
+         class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-[#a1a1aa] hover:text-[#e4e4e7] text-sm sm:text-base font-medium transition-colors duration-200">
+        <i class="fab fa-github"></i>
+        <span>GitHub</span>
+      </a>
     </div>
   </header>
 
@@ -186,10 +179,24 @@
       <button @click="filterType = 'all'" class="px-5 py-2 rounded-lg bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-sm font-medium hover:bg-cyan-500/30 transition-colors">Показать все</button>
     </div>
 
-    <!-- Footer note -->
-    <p class="mt-10 text-center text-xs text-[#52525b] max-w-lg mx-auto leading-relaxed">
-      Рекомендованные в AvenCores/goida-vpn-configs: списки <strong class="text-[#71717a]">1, 6, 22, 23, 24, 25</strong>. <strong class="text-[#71717a]">№26</strong> — обход SNI/CIDR (белые списки).
-    </p>
+    <!-- Footer -->
+    <footer class="mt-14 pt-8 pb-8 border-t border-white/5">
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm">
+        <a href="https://github.com/Hidashimora/free-vpn-anti-rkn" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-2 text-[#a1a1aa] hover:text-[#e4e4e7] transition-colors">
+          <i class="fab fa-github"></i>
+          <span>Мой GitHub</span>
+        </a>
+        <a href="https://github.com/AvenCores/goida-vpn-configs" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-2 text-[#a1a1aa] hover:text-[#e4e4e7] transition-colors">
+          <i class="fab fa-github"></i>
+          <span>Оригинал (AvenCores)</span>
+        </a>
+      </div>
+      <p class="mt-6 text-center text-xs text-[#52525b] max-w-lg mx-auto leading-relaxed">
+        Рекомендованные в AvenCores/goida-vpn-configs: списки <strong class="text-[#71717a]">1, 6, 22, 23, 24, 25</strong>. <strong class="text-[#71717a]">№26</strong> — обход SNI/CIDR (белые списки).
+      </p>
+    </footer>
   </main>
 </body>
 </html>
