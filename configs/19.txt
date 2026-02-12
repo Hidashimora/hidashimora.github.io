@@ -287,8 +287,8 @@ ss://ccab17f9-00a7-4493-c4a6-bbdd9e22166e@18.156.73.211:443?security=none&amp;en
 ss://e1557ceb-07ed-415c-a0d3-3b6e9d9b06ad@wt1.xservers.ir:443?encryption=none&amp;type=ws&amp;host=aBrRu1.ReDisMyfAvoRitE.iR&amp;path=/imoverthecloudws?ed%3D2560&amp;security=tls&amp;sni=aBrRu1.ReDisMyfAvoRitE.iR#Telegram%40Awlix_ir
 ss://40b7d140-2ae6-4ef5-a1bd-46c430bf89ab@cdn.melodyshopone2.ir:8080?path=%2F&amp;security=none&amp;encryption=none&amp;host=cdn.melodyshopone2.ir&amp;type=ws#%40configforVPN
 trojan://humanity@172.64.152.23:443?path=%2Fassignment&amp;security=tls&amp;insecure=0&amp;host=www.calmlunch.com&amp;type=ws&amp;allowInsecure=0&amp;sni=www.calmlunch.com#%F0%9F%87%A9%F0%9F%87%AA%20%40FreakConfig
-trojan://telegram-id-privatevpns@3.122.189.42:22222?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#(S101)
-trojan://telegram-id-privatevpns@3.75.40.40:22222?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#(S101)
+trojan://telegram-id-privatevpns@3.68.128.188:22222?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#(S102)
+trojan://telegram-id-privatevpns@18.195.71.56:22222?security=tls&amp;alpn=http/1.1&amp;headerType=none&amp;type=tcp&amp;sni=trojan.burgerip.co.uk#(S102)
 trojan://humanity@www.creationlong.org:443?path=%2Fassignment&amp;security=tls&amp;fp=chrome&amp;type=ws&amp;sni=www.creationlong.org#%F0%9F%87%AE%F0%9F%87%B7%20IR%2044%20%40Outline_Vpn
 trojan://kuGDUhAYqXnvIomV0Kdljfor@167.17.70.117:27234?security=tls&amp;headerType=none&amp;type=tcp#@V2rayNG3
 trojan://telegram-id-directvpn@52.19.6.148:22222?allowInsecure=0&amp;sni=trojan.burgerip.co.uk#%F0%9F%87%AE%F0%9F%87%AA_IE_%E7%88%B1%E5%B0%94%E5%85%B0
