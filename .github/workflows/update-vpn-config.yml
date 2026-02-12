@@ -27,6 +27,7 @@ jobs:
             curl -sLf "${BASE}/${i}.txt" -o full.txt || true
             touch full.txt
             grep -E '^(vless|trojan|vmess|ss|hy2)://' full.txt > filtered.txt || true
+            if [ "$i" -eq 26 ]; then grep -v '\.ru' filtered.txt > filtered2.txt && mv filtered2.txt filtered.txt; fi
             N=$(wc -l < filtered.txt)
             if [ "$N" -eq 0 ]; then
               cp filtered.txt new.txt
