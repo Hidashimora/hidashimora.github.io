@@ -54,8 +54,22 @@
       word-break: break-all;
       font-family: ui-monospace, monospace;
     }
+    .counter-digit {
+      display: inline-block;
+      min-width: 0.5em;
+      text-align: center;
+    }
+    @keyframes countPop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+    .counter-pop {
+      animation: countPop 0.4s ease;
+    }
     @media (prefers-reduced-motion: reduce) {
       .animate-card-in { animation: none; opacity: 1; }
+      .counter-pop { animation: none; }
     }
   </style>
 </head>
@@ -65,16 +79,26 @@
         base: 'https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/',
         recommended: [1, 6, 22, 23, 24, 25],
         sni: [26, 34],
+        igareck: [27, 28, 29, 30, 31, 32, 33, 34],
+        igareckBlack: [27, 28, 29],
+        igareckWhite: [30, 31, 32, 33, 34],
+        counts: {},
+        displayTotal: 0,
         configs: Array.from({ length: 34 }, (_, i) => ({ id: i + 1 })),
         get filtered() {
           return this.configs.filter(c => {
             if (this.filterType === 'recommended') return this.recommended.includes(c.id);
             if (this.filterType === 'sni') return this.sni.includes(c.id);
+            if (this.filterType === 'igareck') return this.igareck.includes(c.id);
             return true;
           });
         },
         isRecommended(id) { return this.recommended.includes(id); },
         isSni(id) { return this.sni.includes(id); },
+        isIgareck(id) { return this.igareck.includes(id); },
+        isIgareckBlack(id) { return this.igareckBlack.includes(id); },
+        isIgareckWhite(id) { return this.igareckWhite.includes(id); },
+        getCount(id) { return this.counts[id] != null ? this.counts[id] : '—'; },
         copyUrl(url, btn) {
           navigator.clipboard.writeText(url).then(() => {
             const t = btn.querySelector('.copy-text');
@@ -95,7 +119,23 @@
             if (t) { t.textContent = 'Ошибка'; setTimeout(() => { t.textContent = 'Скопировать'; }, 1500); }
           });
         }
-      }">
+      }"
+      x-init="
+        fetch(base + 'counts.json').then(r => r.json()).then(data => {
+          counts = data;
+          const target = data.totalUnique || 0;
+          const duration = 1600;
+          const start = performance.now();
+          const easeOut = t => 1 - Math.pow(1 - t, 2);
+          const step = (now) => {
+            const t = Math.min((now - start) / duration, 1);
+            displayTotal = Math.round(target * easeOut(t));
+            if (t < 1) requestAnimationFrame(step);
+            else displayTotal = target;
+          };
+          requestAnimationFrame(step);
+        }).catch(() => {});
+      ">
   <header class="sticky top-0 z-50 border-b border-white/5 bg-[#0a0a0d]/90 backdrop-blur-md">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <h1 class="text-xl sm:text-2xl font-bold text-[#e4e4e7] tracking-tight">Free configs</h1>
@@ -110,9 +150,13 @@
   <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12 overflow-x-hidden">
     <section class="text-center mb-10 sm:mb-12">
       <h1 class="text-2xl sm:text-3xl font-bold text-[#e4e4e7] mb-2 tracking-tight">Подписки без лагов</h1>
-      <p class="text-[#71717a] text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+      <p class="text-[#71717a] text-sm sm:text-base max-w-xl mx-auto leading-relaxed mb-6">
         Один клик — ссылка в буфере. Вставьте в клиент и подключайтесь.
       </p>
+      <div class="inline-flex flex-col items-center gap-1 rounded-2xl border border-cyan-500/20 bg-cyan-500/5 px-8 py-5">
+        <span class="text-xs font-medium uppercase tracking-wider text-cyan-400/80">Серверов всего (без повторов)</span>
+        <span class="text-4xl sm:text-5xl font-bold tabular-nums text-cyan-400" x-text="displayTotal.toLocaleString('ru-RU')"></span>
+      </div>
     </section>
 
     <nav class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-8" aria-label="Фильтр списков">
@@ -133,6 +177,12 @@
         <i class="fa-solid fa-unlock-keyhole text-[10px]"></i>
         SNI/CIDR
       </button>
+      <button @click="filterType = 'igareck'"
+              :class="filterType === 'igareck' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
+              class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
+        <i class="fa-solid fa-shield-halved text-[10px]"></i>
+        Обход (igareck)
+      </button>
     </nav>
 
     <div class="space-y-4">
@@ -143,14 +193,31 @@
             <div class="flex items-center gap-3 min-w-0 flex-1">
               <div class="min-w-0">
                 <span class="text-xl font-bold text-[#e4e4e7] block">Конфиг номер <span x-text="config.id"></span></span>
-                <span class="text-sm font-medium text-violet-400/90 block mt-0.5" x-show="config.id === 26">Обход SNI/CIDR белых списков</span>
+                <span class="text-sm font-medium text-[#a1a1aa] block mt-0.5">
+                  <span x-show="config.id >= 1 && config.id <= 25">Разные источники (AvenCores/goida-vpn-configs)</span>
+                  <span x-show="config.id === 26">Обход SNI/CIDR белых списков (AvenCores)</span>
+                  <span x-show="config.id >= 27 && config.id <= 29">Чёрный список — обход блокировок (igareck)</span>
+                  <span x-show="config.id >= 30 && config.id <= 34">Белый список — обход жёстких ограничений РФ (igareck)</span>
+                </span>
+                <span class="text-xs text-cyan-400/90 mt-1 inline-block" x-show="getCount(config.id) !== '—'">
+                  <i class="fa-solid fa-server mr-1"></i><span x-text="getCount(config.id)"></span> серверов
+                </span>
               </div>
               <div class="flex flex-wrap gap-1.5 shrink-0">
                 <template x-if="isRecommended(config.id)">
                   <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">Рекоменд.</span>
                 </template>
-                <template x-if="isSni(config.id)">
+                <template x-if="isSni(config.id) && !isIgareck(config.id)">
                   <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-violet-500/20 text-violet-400 border border-violet-500/30">SNI/CIDR</span>
+                </template>
+                <template x-if="isIgareck(config.id)">
+                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">igareck</span>
+                </template>
+                <template x-if="isIgareckBlack(config.id)">
+                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-zinc-500/20 text-zinc-300 border border-zinc-500/30">Чёрный список</span>
+                </template>
+                <template x-if="isIgareckWhite(config.id)">
+                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">Белый список</span>
                 </template>
               </div>
             </div>
@@ -186,11 +253,16 @@
         <a href="https://github.com/AvenCores/goida-vpn-configs" target="_blank" rel="noopener noreferrer"
            class="flex items-center gap-2 text-[#a1a1aa] hover:text-[#e4e4e7] transition-colors">
           <i class="fab fa-github"></i>
-          <span>Оригинал (AvenCores)</span>
+          <span>AvenCores/goida-vpn-configs</span>
+        </a>
+        <a href="https://github.com/igareck/vpn-configs-for-russia" target="_blank" rel="noopener noreferrer"
+           class="flex items-center gap-2 text-[#a1a1aa] hover:text-emerald-400 transition-colors">
+          <i class="fab fa-github"></i>
+          <span>igareck/vpn-configs-for-russia</span>
         </a>
       </div>
       <p class="mt-6 text-center text-xs text-[#52525b] max-w-lg mx-auto leading-relaxed">
-        Рекомендованные в AvenCores/goida-vpn-configs: списки <strong class="text-[#71717a]">1, 6, 22, 23, 24, 25</strong>. <strong class="text-[#71717a]">№26</strong> — обход SNI/CIDR (белые списки).
+        Списки <strong class="text-[#71717a]">1–26</strong> — AvenCores (рекомендуются 1, 6, 22, 23, 24, 25; №26 — SNI/CIDR). Списки <strong class="text-[#71717a]">27–34</strong> — конфиги для обхода блокировок в РФ (чёрные и белые списки), источник <strong class="text-emerald-400/90">igareck/vpn-configs-for-russia</strong>.
       </p>
     </footer>
   </main>

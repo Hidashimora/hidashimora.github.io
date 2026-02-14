@@ -23,6 +23,7 @@ jobs:
           mkdir -p configs
           BASE="https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror"
           MAX=300
+          printf 'OpenRay\n5ubscrpt10n\nproxy-minging\nAutoVPN\nV2RayCFGDumper\nopenproxylist\nv2ray-configs\ncid-vpn-config\ntelegram-v2ray-configs\n.proxy\nV2rayCollector\n.proxy\nconfig\nMineral\nConfig-Collector\nFree-servers\nV2rayCollector_Py\nv2ray\nV2rayCollector\nProxy-List\nkamaji\nxray-config-toolkit\nXray\nSTRUGOV\nV2RayConfig\nОбход SNI/CIDR\n' > names_aven.txt
           for i in $(seq 1 26); do
             curl -sLf "${BASE}/${i}.txt" -o full.txt || true
             touch full.txt
@@ -45,8 +46,10 @@ jobs:
               cp filtered.txt new.txt
             fi
             if [ -s new.txt ]; then
-              cp new.txt "configs/${i}.txt"
-              echo "  configs/${i}.txt: $(wc -l < "configs/${i}.txt") lines"
+              name=$(sed -n "${i}p" names_aven.txt)
+              echo "# Подписка $i | $name (AvenCores/goida-vpn-configs)" > "configs/${i}.txt"
+              cat new.txt >> "configs/${i}.txt"
+              echo "  configs/${i}.txt: $(wc -l < new.txt) servers"
             else
               echo "  configs/${i}.txt: no configs, skipped"
             fi
@@ -57,6 +60,7 @@ jobs:
           BASE="https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main"
           MAX=300
           n=27
+          titles='Shadowsocks+All (чёрный список)|VLESS все (чёрный список)|VLESS 150 для телефона (чёрный)|CIDR белый список mobile 1 (igareck)|CIDR белый список mobile 2 (igareck)|CIDR белый список все (igareck)|CIDR VK/Ya/CDN/Beeline (igareck)|SNI белый список (igareck)'
           for name in "BLACK_SS%2BAll_RUS.txt" "BLACK_VLESS_RUS.txt" "BLACK_VLESS_RUS_mobile.txt" \
                       "Vless-Reality-White-Lists-Rus-Mobile.txt" "Vless-Reality-White-Lists-Rus-Mobile-2.txt" \
                       "WHITE-CIDR-RU-all.txt" "WHITE-CIDR-RU-checked.txt" "WHITE-SNI-RU-all.txt"; do
@@ -78,13 +82,28 @@ jobs:
             fi
             if [ ! -s new.txt ] && [ -s filtered.txt ]; then cp filtered.txt new.txt; fi
             if [ -s new.txt ]; then
-              cp new.txt "configs/${n}.txt"
-              echo "  configs/${n}.txt: $(wc -l < "configs/${n}.txt") lines (from ${name})"
+              title=$(echo "$titles" | cut -d'|' -f$((n-26)))
+              echo "# Подписка $n | $title (igareck/vpn-configs-for-russia)" > "configs/${n}.txt"
+              cat new.txt >> "configs/${n}.txt"
+              echo "  configs/${n}.txt: $(wc -l < new.txt) servers (from ${name})"
             else
               echo "  configs/${n}.txt: no configs, skipped (${name})"
             fi
             n=$((n + 1))
           done
+
+      - name: Generate counts.json (per-config and total unique servers)
+        run: |
+          echo '{' > configs/counts.json
+          for i in $(seq 1 34); do
+            c=0
+            [ -f "configs/${i}.txt" ] && c=$(grep -cE '^(vless|trojan|vmess|ss|hy2)://' "configs/${i}.txt" 2>/dev/null || true)
+            echo "  \"$i\": ${c:-0}," >> configs/counts.json
+          done
+          total=$(grep -hE '^(vless|trojan|vmess|ss|hy2)://' configs/[0-9]*.txt 2>/dev/null | sort -u | wc -l)
+          echo "  \"totalUnique\": $total" >> configs/counts.json
+          echo '}' >> configs/counts.json
+          echo "  totalUnique: $total servers (no duplicates)"
 
       - name: Remove old config files from repo root (if any)
         run: |
