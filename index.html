@@ -77,6 +77,7 @@
       x-data="{
         filterType: 'all',
         base: 'https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/',
+        baseFull: 'https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/',
         recommended: [1, 6, 22, 23, 24, 25],
         obhod: [26, 27, 28, 29, 30, 31, 32, 33, 34],
         blackList: [27, 28, 29],
@@ -84,7 +85,15 @@
         counts: {},
         displayTotal: 0,
         configs: Array.from({ length: 34 }, (_, i) => ({ id: i + 1 })),
+        fullConfigs: [
+          { id: 1, name: 'OpenRay' }, { id: 2, name: '5ubscrpt10n' }, { id: 3, name: 'proxy-minging' }, { id: 4, name: 'AutoVPN' }, { id: 5, name: 'V2RayCFGDumper' },
+          { id: 6, name: 'openproxylist' }, { id: 7, name: 'v2ray-configs' }, { id: 8, name: 'cid-vpn-config' }, { id: 9, name: 'telegram-v2ray-configs' }, { id: 10, name: '.proxy' },
+          { id: 11, name: 'V2rayCollector' }, { id: 12, name: '.proxy' }, { id: 13, name: 'config' }, { id: 14, name: 'Mineral' }, { id: 15, name: 'Config-Collector' },
+          { id: 16, name: 'Free-servers' }, { id: 17, name: 'V2rayCollector_Py' }, { id: 18, name: 'v2ray' }, { id: 19, name: 'V2rayCollector' }, { id: 20, name: 'Proxy-List' },
+          { id: 21, name: 'kamaji' }, { id: 22, name: 'xray-config-toolkit' }, { id: 23, name: 'Xray' }, { id: 24, name: 'STRUGOV' }, { id: 25, name: 'V2RayConfig' }, { id: 26, name: 'Обход' }
+        ],
         get filtered() {
+          if (this.filterType === 'full') return [];
           return this.configs.filter(c => {
             if (this.filterType === 'recommended') return this.recommended.includes(c.id);
             if (this.filterType === 'obhod') return this.obhod.includes(c.id);
@@ -188,9 +197,15 @@
         <i class="fa-regular fa-circle text-[8px]"></i>
         Белый список
       </button>
+      <button @click="filterType = 'full'"
+              :class="filterType === 'full' ? 'bg-rose-500/20 text-rose-300 border-rose-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
+              class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
+        <i class="fa-solid fa-list text-[10px]"></i>
+        Полные (не рекоменд.)
+      </button>
     </nav>
 
-    <div class="space-y-4">
+    <div class="space-y-4" x-show="filterType !== 'full'">
       <template x-for="(config, index) in filtered" :key="config.id">
         <div class="card-glow rounded-xl border border-white/10 bg-[#141418] p-4 sm:p-5 shadow-lg hover:border-white/15 transition-all duration-300 animate-card-in"
              :style="'animation-delay: ' + (index * 35) + 'ms'">
@@ -239,11 +254,39 @@
       </template>
     </div>
 
-    <div x-show="filtered.length === 0" x-cloak class="text-center py-12 rounded-xl border border-dashed border-white/10 bg-[#141418]">
+    <div x-show="filterType !== 'full' && filtered.length === 0" x-cloak class="text-center py-12 rounded-xl border border-dashed border-white/10 bg-[#141418]">
       <i class="fa-solid fa-filter text-3xl text-[#52525b] mb-3"></i>
       <p class="text-[#71717a] text-sm mb-4">Нет списков по выбранному фильтру</p>
       <button @click="filterType = 'all'" class="px-5 py-2 rounded-lg bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-sm font-medium hover:bg-cyan-500/30 transition-colors">Показать все</button>
     </div>
+
+    <section x-show="filterType === 'full'" x-cloak class="space-y-4">
+      <p class="text-rose-400/90 text-sm mb-4 rounded-lg border border-rose-500/20 bg-rose-500/5 px-4 py-3">
+        <i class="fa-solid fa-triangle-exclamation mr-2"></i><strong>Не рекомендовано.</strong> Полные списки содержат тысячи серверов и могут лагать устройство (тормоза, долгая загрузка, сбои клиента).
+      </p>
+      <template x-for="(fc, index) in fullConfigs" :key="fc.id">
+        <div class="card-glow rounded-xl border border-rose-500/20 bg-[#141418] p-4 sm:p-5 shadow-lg hover:border-rose-500/30 transition-all duration-300 animate-card-in"
+             :style="'animation-delay: ' + (index * 35) + 'ms'">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div class="min-w-0 flex-1">
+              <span class="text-xl font-bold text-[#e4e4e7] block">Полный конфиг <span x-text="fc.id"></span> — <span x-text="fc.name"></span></span>
+              <span class="text-xs text-rose-400/80 mt-1 block">Может лагать устройство</span>
+            </div>
+            <button type="button"
+                    :data-url="baseFull + fc.id + '.txt'"
+                    @click="copyUrl($event.currentTarget.getAttribute('data-url'), $event.currentTarget)"
+                    class="shrink-0 w-full sm:w-auto py-2.5 px-4 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 font-medium text-sm flex items-center justify-center gap-2 border border-rose-500/30 transition-all duration-200 active:scale-[0.98]">
+              <i class="fa-regular fa-copy"></i>
+              <i class="fa-solid fa-check hidden"></i>
+              <span class="copy-text">Скопировать</span>
+            </button>
+          </div>
+          <div class="mt-3 pt-3 border-t border-white/5">
+            <p class="url-box text-[11px] sm:text-xs text-[#71717a] leading-relaxed" x-text="baseFull + fc.id + '.txt'"></p>
+          </div>
+        </div>
+      </template>
+    </section>
 
     <footer class="mt-14 pt-8 pb-8 border-t border-white/5">
       <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm">

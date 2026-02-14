@@ -19,7 +19,7 @@
 - [🚀 Быстрый старт](#-быстрый-старт)
 - [📋 Ссылки на подписки (1–34)](#ссылки-на-подписки-1-34)
 - [📱 Гайды по установке](#-гайды-по-установке)
-- [🔗 Полные списки (оригинал)](#-полные-списки-оригинал)
+- [🔗 Полные списки (оригинал AvenCores)](#-полные-списки-оригинал-avencores)
 - [⚙️ Обновление](#️-обновление)
 - [⚠️ Дисклеймер](#️-дисклеймер)
 
@@ -140,45 +140,42 @@ README.md
 
 ---
 
-## 🔗 Полные списки (оригинал)
+## 🔗 Полные списки (оригинал AvenCores)
 
-При необходимости использовать **полный** список серверов (без сокращения) ссылки можно взять из репозиториев **[AvenCores/goida-vpn-configs](https://github.com/AvenCores/goida-vpn-configs)** (списки 1–26) и **[igareck/vpn-configs-for-russia](https://github.com/igareck/vpn-configs-for-russia)** (источники для списков 27–34). Следует учитывать, что большой объём конфигов может приводить к замедлению работы клиента.
+> **⚠️ Не рекомендовано.** Полные списки содержат тысячи серверов и **могут лагать устройство** (тормоза, долгая загрузка, сбои клиента). Используйте только если нужен полный набор; для обычного использования — укороченные подписки выше.
 
-<details>
-<summary>Развернуть таблицу ссылок на полные списки (1–26)</summary>
+При необходимости **полный** список (без сокращения) — ссылки ниже. Источник: **[AvenCores/goida-vpn-configs](https://github.com/AvenCores/goida-vpn-configs)** (1–26). Полные списки для 27–34 — в [igareck/vpn-configs-for-russia](https://github.com/igareck/vpn-configs-for-russia).
 
-| № | Описание | Ссылка |
-|---|----------|--------|
-| 1 | OpenRay | [1.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt) |
-| 2 | 5ubscrpt10n | [2.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/2.txt) |
-| 3 | proxy-minging | [3.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/3.txt) |
-| 4 | AutoVPN | [4.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/4.txt) |
-| 5 | V2RayCFGDumper | [5.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/5.txt) |
-| 6 | openproxylist | [6.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/6.txt) |
-| 7 | v2ray-configs | [7.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/7.txt) |
-| 8 | cid-vpn-config | [8.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/8.txt) |
-| 9 | telegram-v2ray-configs | [9.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/9.txt) |
-| 10 | .proxy | [10.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/10.txt) |
-| 11 | V2rayCollector | [11.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/11.txt) |
-| 12 | .proxy | [12.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/12.txt) |
-| 13 | config | [13.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/13.txt) |
-| 14 | Mineral | [14.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/14.txt) |
-| 15 | Config-Collector | [15.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/15.txt) |
-| 16 | Free-servers | [16.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/16.txt) |
-| 17 | V2rayCollector_Py | [17.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/17.txt) |
-| 18 | v2ray | [18.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/18.txt) |
-| 19 | V2rayCollector | [19.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/19.txt) |
-| 20 | Proxy-List | [20.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/20.txt) |
-| 21 | kamaji | [21.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/21.txt) |
-| 22 | xray-config-toolkit | [22.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/22.txt) |
-| 23 | Xray | [23.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/23.txt) |
-| 24 | STRUGOV | [24.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/24.txt) |
-| 25 | V2RayConfig | [25.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/25.txt) |
-| 26 | Обход SNI/CIDR | [26.txt](https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt) |
+### Raw-ссылки на полные подписки (1–26)
 
-В репозитории AvenCores/goida-vpn-configs рекомендуются списки 1, 6, 22, 23, 24, 25. Список 26 предназначен для обхода блокировок по SNI/CIDR (белые списки). Списки 27–34 — конфиги, проверенные для работы в РФ (чёрные и белые списки), из репозитория igareck/vpn-configs-for-russia.
-
-</details>
+| № | Описание | Raw-ссылка |
+|---|----------|------------|
+| 1 | OpenRay | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/1.txt` |
+| 2 | 5ubscrpt10n | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/2.txt` |
+| 3 | proxy-minging | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/3.txt` |
+| 4 | AutoVPN | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/4.txt` |
+| 5 | V2RayCFGDumper | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/5.txt` |
+| 6 | openproxylist | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/6.txt` |
+| 7 | v2ray-configs | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/7.txt` |
+| 8 | cid-vpn-config | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/8.txt` |
+| 9 | telegram-v2ray-configs | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/9.txt` |
+| 10 | .proxy | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/10.txt` |
+| 11 | V2rayCollector | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/11.txt` |
+| 12 | .proxy | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/12.txt` |
+| 13 | config | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/13.txt` |
+| 14 | Mineral | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/14.txt` |
+| 15 | Config-Collector | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/15.txt` |
+| 16 | Free-servers | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/16.txt` |
+| 17 | V2rayCollector_Py | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/17.txt` |
+| 18 | v2ray | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/18.txt` |
+| 19 | V2rayCollector | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/19.txt` |
+| 20 | Proxy-List | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/20.txt` |
+| 21 | kamaji | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/21.txt` |
+| 22 | xray-config-toolkit | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/22.txt` |
+| 23 | Xray | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/23.txt` |
+| 24 | STRUGOV | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/24.txt` |
+| 25 | V2RayConfig | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/25.txt` |
+| 26 | Обход | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/26.txt` |
 
 ---
 
