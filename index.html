@@ -78,26 +78,25 @@
         filterType: 'all',
         base: 'https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/',
         recommended: [1, 6, 22, 23, 24, 25],
-        sni: [26, 34],
-        igareck: [27, 28, 29, 30, 31, 32, 33, 34],
-        igareckBlack: [27, 28, 29],
-        igareckWhite: [30, 31, 32, 33, 34],
+        obhod: [26, 27, 28, 29, 30, 31, 32, 33, 34],
+        blackList: [27, 28, 29],
+        whiteList: [26, 30, 31, 32, 33, 34],
         counts: {},
         displayTotal: 0,
         configs: Array.from({ length: 34 }, (_, i) => ({ id: i + 1 })),
         get filtered() {
           return this.configs.filter(c => {
             if (this.filterType === 'recommended') return this.recommended.includes(c.id);
-            if (this.filterType === 'sni') return this.sni.includes(c.id);
-            if (this.filterType === 'igareck') return this.igareck.includes(c.id);
+            if (this.filterType === 'obhod') return this.obhod.includes(c.id);
+            if (this.filterType === 'black') return this.blackList.includes(c.id);
+            if (this.filterType === 'white') return this.whiteList.includes(c.id);
             return true;
           });
         },
         isRecommended(id) { return this.recommended.includes(id); },
-        isSni(id) { return this.sni.includes(id); },
-        isIgareck(id) { return this.igareck.includes(id); },
-        isIgareckBlack(id) { return this.igareckBlack.includes(id); },
-        isIgareckWhite(id) { return this.igareckWhite.includes(id); },
+        isObhod(id) { return this.obhod.includes(id); },
+        isBlackList(id) { return this.blackList.includes(id); },
+        isWhiteList(id) { return this.whiteList.includes(id); },
         getCount(id) { return this.counts[id] != null ? this.counts[id] : '—'; },
         copyUrl(url, btn) {
           navigator.clipboard.writeText(url).then(() => {
@@ -171,17 +170,23 @@
         <i class="fa-solid fa-star text-[10px]"></i>
         Рекомендованные
       </button>
-      <button @click="filterType = 'sni'"
-              :class="filterType === 'sni' ? 'bg-violet-500/20 text-violet-400 border-violet-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
+      <button @click="filterType = 'obhod'"
+              :class="filterType === 'obhod' ? 'bg-violet-500/20 text-violet-400 border-violet-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
               class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
         <i class="fa-solid fa-unlock-keyhole text-[10px]"></i>
-        SNI/CIDR
+        Обход
       </button>
-      <button @click="filterType = 'igareck'"
-              :class="filterType === 'igareck' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
+      <button @click="filterType = 'black'"
+              :class="filterType === 'black' ? 'bg-zinc-500/20 text-zinc-300 border-zinc-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
               class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
-        <i class="fa-solid fa-shield-halved text-[10px]"></i>
-        Обход (igareck)
+        <i class="fa-solid fa-circle text-[8px]"></i>
+        Чёрный список
+      </button>
+      <button @click="filterType = 'white'"
+              :class="filterType === 'white' ? 'bg-sky-500/20 text-sky-300 border-sky-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
+              class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
+        <i class="fa-regular fa-circle text-[8px]"></i>
+        Белый список
       </button>
     </nav>
 
@@ -194,10 +199,10 @@
               <div class="min-w-0">
                 <span class="text-xl font-bold text-[#e4e4e7] block">Конфиг номер <span x-text="config.id"></span></span>
                 <span class="text-sm font-medium text-[#a1a1aa] block mt-0.5">
-                  <span x-show="config.id >= 1 && config.id <= 25">Разные источники (AvenCores/goida-vpn-configs)</span>
-                  <span x-show="config.id === 26">Обход SNI/CIDR белых списков (AvenCores)</span>
-                  <span x-show="config.id >= 27 && config.id <= 29">Чёрный список — обход блокировок (igareck)</span>
-                  <span x-show="config.id >= 30 && config.id <= 34">Белый список — обход жёстких ограничений РФ (igareck)</span>
+                  <span x-show="config.id >= 1 && config.id <= 25">Разные источники</span>
+                  <span x-show="config.id === 26">Обход</span>
+                  <span x-show="config.id >= 27 && config.id <= 29">Чёрный список — обход блокировок</span>
+                  <span x-show="config.id >= 30 && config.id <= 34">Белый список — обход ограничений</span>
                 </span>
                 <span class="text-xs text-cyan-400/90 mt-1 inline-block" x-show="getCount(config.id) !== '—'">
                   <i class="fa-solid fa-server mr-1"></i><span x-text="getCount(config.id)"></span> серверов
@@ -207,16 +212,13 @@
                 <template x-if="isRecommended(config.id)">
                   <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 border border-amber-500/30">Рекоменд.</span>
                 </template>
-                <template x-if="isSni(config.id) && !isIgareck(config.id)">
-                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-violet-500/20 text-violet-400 border border-violet-500/30">SNI/CIDR</span>
+                <template x-if="isObhod(config.id)">
+                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-violet-500/20 text-violet-400 border border-violet-500/30">Обход</span>
                 </template>
-                <template x-if="isIgareck(config.id)">
-                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">igareck</span>
-                </template>
-                <template x-if="isIgareckBlack(config.id)">
+                <template x-if="isBlackList(config.id)">
                   <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-zinc-500/20 text-zinc-300 border border-zinc-500/30">Чёрный список</span>
                 </template>
-                <template x-if="isIgareckWhite(config.id)">
+                <template x-if="isWhiteList(config.id)">
                   <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">Белый список</span>
                 </template>
               </div>
@@ -255,14 +257,9 @@
           <i class="fab fa-github"></i>
           <span>AvenCores/goida-vpn-configs</span>
         </a>
-        <a href="https://github.com/igareck/vpn-configs-for-russia" target="_blank" rel="noopener noreferrer"
-           class="flex items-center gap-2 text-[#a1a1aa] hover:text-emerald-400 transition-colors">
-          <i class="fab fa-github"></i>
-          <span>igareck/vpn-configs-for-russia</span>
-        </a>
       </div>
       <p class="mt-6 text-center text-xs text-[#52525b] max-w-lg mx-auto leading-relaxed">
-        Списки <strong class="text-[#71717a]">1–26</strong> — AvenCores (рекомендуются 1, 6, 22, 23, 24, 25; №26 — SNI/CIDR). Списки <strong class="text-[#71717a]">27–34</strong> — конфиги для обхода блокировок в РФ (чёрные и белые списки), источник <strong class="text-emerald-400/90">igareck/vpn-configs-for-russia</strong>.
+        Рекомендуются списки <strong class="text-[#71717a]">1, 6, 22, 23, 24, 25</strong>. <strong class="text-[#71717a]">Обход</strong> — списки 26–34 (чёрный и белый список).
       </p>
     </footer>
   </main>
