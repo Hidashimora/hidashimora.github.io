@@ -92,6 +92,22 @@ jobs:
             n=$((n + 1))
           done
 
+      - name: Fetch full AvenCores lists (1.1–1.26), save to configs
+        run: |
+          BASE="https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror"
+          printf 'OpenRay\n5ubscrpt10n\nproxy-minging\nAutoVPN\nV2RayCFGDumper\nopenproxylist\nv2ray-configs\ncid-vpn-config\ntelegram-v2ray-configs\n.proxy\nV2rayCollector\n.proxy\nconfig\nMineral\nConfig-Collector\nFree-servers\nV2rayCollector_Py\nv2ray\nV2rayCollector\nProxy-List\nkamaji\nxray-config-toolkit\nXray\nSTRUGOV\nV2RayConfig\nОбход\n' > names_aven.txt
+          for i in $(seq 1 26); do
+            curl -sLf "${BASE}/${i}.txt" -o full.txt || true
+            touch full.txt
+            grep -E '^(vless|trojan|vmess|ss|hy2)://' full.txt > filtered.txt || true
+            if [ "$i" -eq 26 ]; then grep -v '\.ru' filtered.txt > filtered2.txt && mv filtered2.txt filtered.txt; fi
+            name=$(sed -n "${i}p" names_aven.txt)
+            f="1.${i}.txt"
+            echo "# Подписка $f | $name (полный, AvenCores)" > "configs/$f"
+            cat filtered.txt >> "configs/$f"
+            echo "  configs/$f: $(wc -l < filtered.txt) servers"
+          done
+
       - name: Generate counts.json (per-config and total unique servers)
         run: |
           echo '{' > configs/counts.json
@@ -100,7 +116,13 @@ jobs:
             [ -f "configs/${i}.txt" ] && c=$(grep -cE '^(vless|trojan|vmess|ss|hy2)://' "configs/${i}.txt" 2>/dev/null || true)
             echo "  \"$i\": ${c:-0}," >> configs/counts.json
           done
-          total=$(grep -hE '^(vless|trojan|vmess|ss|hy2)://' configs/[0-9]*.txt 2>/dev/null | sort -u | wc -l)
+          for i in $(seq 1 26); do
+            key="1.$i"
+            c=0
+            [ -f "configs/${key}.txt" ] && c=$(grep -cE '^(vless|trojan|vmess|ss|hy2)://' "configs/${key}.txt" 2>/dev/null || true)
+            echo "  \"$key\": ${c:-0}," >> configs/counts.json
+          done
+          total=$(for i in $(seq 1 34); do [ -f "configs/${i}.txt" ] && grep -E '^(vless|trojan|vmess|ss|hy2)://' "configs/${i}.txt"; done 2>/dev/null | sort -u | wc -l)
           echo "  \"totalUnique\": $total" >> configs/counts.json
           echo '}' >> configs/counts.json
           echo "  totalUnique: $total servers (no duplicates)"

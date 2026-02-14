@@ -77,7 +77,6 @@
       x-data="{
         filterType: 'all',
         base: 'https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/',
-        baseFull: 'https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/',
         recommended: [1, 6, 22, 23, 24, 25],
         obhod: [26, 27, 28, 29, 30, 31, 32, 33, 34],
         blackList: [27, 28, 29],
@@ -86,11 +85,11 @@
         displayTotal: 0,
         configs: Array.from({ length: 34 }, (_, i) => ({ id: i + 1 })),
         fullConfigs: [
-          { id: 1, name: 'OpenRay' }, { id: 2, name: '5ubscrpt10n' }, { id: 3, name: 'proxy-minging' }, { id: 4, name: 'AutoVPN' }, { id: 5, name: 'V2RayCFGDumper' },
-          { id: 6, name: 'openproxylist' }, { id: 7, name: 'v2ray-configs' }, { id: 8, name: 'cid-vpn-config' }, { id: 9, name: 'telegram-v2ray-configs' }, { id: 10, name: '.proxy' },
-          { id: 11, name: 'V2rayCollector' }, { id: 12, name: '.proxy' }, { id: 13, name: 'config' }, { id: 14, name: 'Mineral' }, { id: 15, name: 'Config-Collector' },
-          { id: 16, name: 'Free-servers' }, { id: 17, name: 'V2rayCollector_Py' }, { id: 18, name: 'v2ray' }, { id: 19, name: 'V2rayCollector' }, { id: 20, name: 'Proxy-List' },
-          { id: 21, name: 'kamaji' }, { id: 22, name: 'xray-config-toolkit' }, { id: 23, name: 'Xray' }, { id: 24, name: 'STRUGOV' }, { id: 25, name: 'V2RayConfig' }, { id: 26, name: 'Обход' }
+          { id: '1.1', name: 'OpenRay' }, { id: '1.2', name: '5ubscrpt10n' }, { id: '1.3', name: 'proxy-minging' }, { id: '1.4', name: 'AutoVPN' }, { id: '1.5', name: 'V2RayCFGDumper' },
+          { id: '1.6', name: 'openproxylist' }, { id: '1.7', name: 'v2ray-configs' }, { id: '1.8', name: 'cid-vpn-config' }, { id: '1.9', name: 'telegram-v2ray-configs' }, { id: '1.10', name: '.proxy' },
+          { id: '1.11', name: 'V2rayCollector' }, { id: '1.12', name: '.proxy' }, { id: '1.13', name: 'config' }, { id: '1.14', name: 'Mineral' }, { id: '1.15', name: 'Config-Collector' },
+          { id: '1.16', name: 'Free-servers' }, { id: '1.17', name: 'V2rayCollector_Py' }, { id: '1.18', name: 'v2ray' }, { id: '1.19', name: 'V2rayCollector' }, { id: '1.20', name: 'Proxy-List' },
+          { id: '1.21', name: 'kamaji' }, { id: '1.22', name: 'xray-config-toolkit' }, { id: '1.23', name: 'Xray' }, { id: '1.24', name: 'STRUGOV' }, { id: '1.25', name: 'V2RayConfig' }, { id: '1.26', name: 'Обход' }
         ],
         get filtered() {
           if (this.filterType === 'full') return [];
@@ -107,6 +106,13 @@
         isBlackList(id) { return this.blackList.includes(id); },
         isWhiteList(id) { return this.whiteList.includes(id); },
         getCount(id) { return this.counts[id] != null ? this.counts[id] : '—'; },
+        serversWord(n) {
+          if (n == null || typeof n !== 'number' || isNaN(n)) return 'серверов';
+          const mod10 = n % 10, mod100 = n % 100;
+          if (mod10 === 1 && mod100 !== 11) return 'сервер';
+          if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'сервера';
+          return 'серверов';
+        },
         copyUrl(url, btn) {
           navigator.clipboard.writeText(url).then(() => {
             const t = btn.querySelector('.copy-text');
@@ -162,8 +168,8 @@
         Один клик — ссылка в буфере. Вставьте в клиент и подключайтесь.
       </p>
       <div class="inline-flex flex-col items-center gap-1 rounded-2xl border border-cyan-500/20 bg-cyan-500/5 px-8 py-5">
-        <span class="text-xs font-medium uppercase tracking-wider text-cyan-400/80">Серверов всего (без повторов)</span>
-        <span class="text-4xl sm:text-5xl font-bold tabular-nums text-cyan-400" x-text="displayTotal.toLocaleString('ru-RU')"></span>
+        <span class="text-xs font-medium uppercase tracking-wider text-cyan-400/80">Всего (без повторов)</span>
+        <span class="text-4xl sm:text-5xl font-bold tabular-nums text-cyan-400" x-text="displayTotal.toLocaleString('ru-RU') + ' ' + serversWord(displayTotal)"></span>
       </div>
     </section>
 
@@ -220,7 +226,7 @@
                   <span x-show="config.id >= 30 && config.id <= 34">Белый список — обход ограничений</span>
                 </span>
                 <span class="text-xs text-cyan-400/90 mt-1 inline-block" x-show="getCount(config.id) !== '—'">
-                  <i class="fa-solid fa-server mr-1"></i><span x-text="getCount(config.id)"></span> серверов
+                  <i class="fa-solid fa-server mr-1"></i><span x-text="getCount(config.id) + ' ' + serversWord(Number(getCount(config.id)))"></span>
                 </span>
               </div>
               <div class="flex flex-wrap gap-1.5 shrink-0">
@@ -262,7 +268,7 @@
 
     <section x-show="filterType === 'full'" x-cloak class="space-y-4">
       <p class="text-rose-400/90 text-sm mb-4 rounded-lg border border-rose-500/20 bg-rose-500/5 px-4 py-3">
-        <i class="fa-solid fa-triangle-exclamation mr-2"></i><strong>Не рекомендовано.</strong> Полные списки содержат тысячи серверов и могут лагать устройство (тормоза, долгая загрузка, сбои клиента).
+        <i class="fa-solid fa-triangle-exclamation mr-2"></i><strong>Не рекомендовано.</strong> Полные списки содержат тысячи серверов и могут приводить к тормозам устройства, долгой загрузке и сбоям клиента.
       </p>
       <template x-for="(fc, index) in fullConfigs" :key="fc.id">
         <div class="card-glow rounded-xl border border-rose-500/20 bg-[#141418] p-4 sm:p-5 shadow-lg hover:border-rose-500/30 transition-all duration-300 animate-card-in"
@@ -270,10 +276,13 @@
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div class="min-w-0 flex-1">
               <span class="text-xl font-bold text-[#e4e4e7] block">Полный конфиг <span x-text="fc.id"></span> — <span x-text="fc.name"></span></span>
-              <span class="text-xs text-rose-400/80 mt-1 block">Может лагать устройство</span>
+              <span class="text-xs text-rose-400/80 mt-1 block">Может вызывать тормоза устройства</span>
+              <span class="text-xs text-cyan-400/90 mt-1 inline-block" x-show="getCount(fc.id) !== '—'">
+                <i class="fa-solid fa-server mr-1"></i><span x-text="getCount(fc.id) + ' ' + serversWord(Number(getCount(fc.id)))"></span>
+              </span>
             </div>
             <button type="button"
-                    :data-url="baseFull + fc.id + '.txt'"
+                    :data-url="base + fc.id + '.txt'"
                     @click="copyUrl($event.currentTarget.getAttribute('data-url'), $event.currentTarget)"
                     class="shrink-0 w-full sm:w-auto py-2.5 px-4 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 font-medium text-sm flex items-center justify-center gap-2 border border-rose-500/30 transition-all duration-200 active:scale-[0.98]">
               <i class="fa-regular fa-copy"></i>
@@ -282,7 +291,7 @@
             </button>
           </div>
           <div class="mt-3 pt-3 border-t border-white/5">
-            <p class="url-box text-[11px] sm:text-xs text-[#71717a] leading-relaxed" x-text="baseFull + fc.id + '.txt'"></p>
+            <p class="url-box text-[11px] sm:text-xs text-[#71717a] leading-relaxed" x-text="base + fc.id + '.txt'"></p>
           </div>
         </div>
       </template>

@@ -6,10 +6,6 @@
   </a>
 </p>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> e4c5791853f651d37ccac0e9d0b7abf51efc53c0
 > Укороченные списки VPN-серверов для обхода блокировок. 34 укороченных списка вместо тонны нод. Скопировал ссылку — вставил в клиент — и всё работает без тормозов и вылетов.
 >
 > Автоматически обновляемая коллекция публичных VPN-конфигов (V2Ray / VLESS / Hysteria / Trojan / VMess / Reality / Shadowsocks) для быстрого обхода блокировок. Каждый конфиг — это TXT-подписка, которую можно импортировать практически в любой современный клиент (v2rayNG, NekoRay, Throne, v2rayN, V2Box, v2RayTun, Hiddify и др.). Списки обновляются раз в минуту с помощью GitHub Actions, поэтому ссылки из раздела «📋 Ссылки на подписки (1–34)» всегда актуальны.
@@ -67,7 +63,7 @@ README.md
 <a id="ссылки-на-подписки-1-34"></a>
 ## 📋 Ссылки на подписки (1–34)
 
-В каждом файле — не более 300 конфигов из соответствующего источника: если в исходном списке меньше 300 — сохраняются все; иначе примерно четверть (каждая 4‑я строка), но не более 300. Учитываются только строки с конфигурациями протоколов **vless**, **trojan**, **vmess**, **ss**, **hy2**. Списки **№1–№26** — [AvenCores/goida-vpn-configs](https://github.com/AvenCores/goida-vpn-configs) (для обхода по SNI/CIDR — №26). Списки **№27–№34** — [igareck/vpn-configs-for-russia](https://github.com/igareck/vpn-configs-for-russia): чёрные списки (VLESS, Shadowsocks+All) и белые списки (CIDR/SNI для РФ).
+В каждом файле — не более 300 конфигов из соответствующего источника: если в исходном списке меньше 300 — сохраняются все; иначе примерно четверть (каждая 4‑я строка), но не более 300. Учитываются только строки с конфигурациями протоколов **vless**, **trojan**, **vmess**, **ss**, **hy2**. Списки **№1–№26** — [AvenCores/goida-vpn-configs](https://github.com/AvenCores/goida-vpn-configs) (для обхода — №26). Списки **№27–№34** — [igareck/vpn-configs-for-russia](https://github.com/igareck/vpn-configs-for-russia): чёрные и белые списки (CIDR/SNI для РФ). **№1.1–№1.26** — полные списки AvenCores (не рекомендовано: могут вызывать тормоза устройства).
 
 | № | Raw-ссылка |
 |---|------------|
@@ -105,6 +101,32 @@ README.md
 | 32 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/32.txt` |
 | 33 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/33.txt` |
 | 34 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/34.txt` |
+| 1.1 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/1.txt` |
+| 1.2 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/2.txt` |
+| 1.3 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/3.txt` |
+| 1.4 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/4.txt` |
+| 1.5 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/5.txt` |
+| 1.6 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/6.txt` |
+| 1.7 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/7.txt` |
+| 1.8 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/8.txt` |
+| 1.9 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/9.txt` |
+| 1.10 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/10.txt` |
+| 1.11 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/11.txt` |
+| 1.12 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/12.txt` |
+| 1.13 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/13.txt` |
+| 1.14 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/14.txt` |
+| 1.15 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/15.txt` |
+| 1.16 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/16.txt` |
+| 1.17 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/17.txt` |
+| 1.18 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/18.txt` |
+| 1.19 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/19.txt` |
+| 1.20 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/20.txt` |
+| 1.21 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/21.txt` |
+| 1.22 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/22.txt` |
+| 1.23 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/23.txt` |
+| 1.24 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/24.txt` |
+| 1.25 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/25.txt` |
+| 1.26 | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/26.txt` |
 
 ---
 
@@ -146,7 +168,7 @@ README.md
 
 ## 🔗 Полные списки (оригинал AvenCores)
 
-> **⚠️ Не рекомендовано.** Полные списки содержат тысячи серверов и **могут лагать устройство** (тормоза, долгая загрузка, сбои клиента). Используйте только если нужен полный набор; для обычного использования — укороченные подписки выше.
+> **⚠️ Не рекомендовано.** Полные списки содержат тысячи серверов и **могут приводить к тормозам устройства, долгой загрузке и сбоям клиента.** Используйте только если нужен полный набор; для обычного использования — укороченные подписки выше.
 
 При необходимости **полный** список (без сокращения) — ссылки ниже. Источник: **[AvenCores/goida-vpn-configs](https://github.com/AvenCores/goida-vpn-configs)** (1–26). Полные списки для 27–34 — в [igareck/vpn-configs-for-russia](https://github.com/igareck/vpn-configs-for-russia).
 
