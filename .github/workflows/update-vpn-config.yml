@@ -52,9 +52,43 @@ jobs:
             fi
           done
 
+      - name: Fetch igareck/vpn-configs-for-russia (27–34); if &lt;300 configs — no 1/4, else 1/4 max 300
+        run: |
+          BASE="https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main"
+          MAX=300
+          n=27
+          for name in "BLACK_SS%2BAll_RUS.txt" "BLACK_VLESS_RUS.txt" "BLACK_VLESS_RUS_mobile.txt" \
+                      "Vless-Reality-White-Lists-Rus-Mobile.txt" "Vless-Reality-White-Lists-Rus-Mobile-2.txt" \
+                      "WHITE-CIDR-RU-all.txt" "WHITE-CIDR-RU-checked.txt" "WHITE-SNI-RU-all.txt"; do
+            curl -sLf "${BASE}/${name}" -o full.txt || true
+            touch full.txt
+            grep -E '^(vless|trojan|vmess|ss|hy2)://' full.txt > filtered.txt || true
+            N=$(wc -l < filtered.txt)
+            if [ "$N" -eq 0 ]; then
+              cp filtered.txt new.txt
+            elif [ "$N" -lt "$MAX" ]; then
+              cp filtered.txt new.txt
+            else
+              quarter=$((N / 4))
+              if [ "$quarter" -le "$MAX" ]; then
+                awk 'NR % 4 == 1' filtered.txt > new.txt
+              else
+                awk -v T="$N" -v target="$MAX" 'int((NR-1)*target/T) != int((NR-2)*target/T)' filtered.txt > new.txt
+              fi
+            fi
+            if [ ! -s new.txt ] && [ -s filtered.txt ]; then cp filtered.txt new.txt; fi
+            if [ -s new.txt ]; then
+              cp new.txt "configs/${n}.txt"
+              echo "  configs/${n}.txt: $(wc -l < "configs/${n}.txt") lines (from ${name})"
+            else
+              echo "  configs/${n}.txt: no configs, skipped (${name})"
+            fi
+            n=$((n + 1))
+          done
+
       - name: Remove old config files from repo root (if any)
         run: |
-          for f in $(seq 1 26 | sed 's/$/.txt/'); do rm -f "$f"; done
+          for f in $(seq 1 34 | sed 's/$/.txt/'); do rm -f "$f"; done
 
       - name: Commit and push if changed
         run: |
