@@ -19,7 +19,7 @@
 - [🚀 Быстрый старт](#-быстрый-старт)
 - [📋 Ссылки на подписки (1–34)](#ссылки-на-подписки-1-34)
 - [📱 Гайды по установке](#-гайды-по-установке)
-- [🔗 Полные списки (оригинал AvenCores)](#-полные-списки-оригинал-avencores)
+- [🔗 Полные списки (не рекомендовано)](#-полные-списки-не-рекомендовано)
 - [⚙️ Обновление](#️-обновление)
 - [⚠️ Дисклеймер](#️-дисклеймер)
 
@@ -42,7 +42,9 @@ VPN-серверы из подписок позволяют **обходить �
 ├── update-vpn-config.yml    # запуск по расписанию (раз в минуту)
 
 configs/
-├── 1.txt … 34.txt            # укороченные подписки (если в источнике <300 — все, иначе 1/4, макс. 300)
+├── 1.1.txt … 26.1.txt       # короткие подписки по источникам 1–26 (макс. 300)
+├── 1.2.txt … 26.2.txt       # полные подписки только по источникам 1–26 (не рекомендовано)
+├── 27.txt … 34.txt          # короткие подписки по источникам 27–34
 ├── counts.json               # число серверов в каждом файле и totalUnique (без повторов)
 
 index.html                   # страница со ссылками на все конфиги
@@ -63,70 +65,80 @@ README.md
 <a id="ссылки-на-подписки-1-34"></a>
 ## 📋 Ссылки на подписки (1–34)
 
-В каждом файле — не более 300 конфигов из соответствующего источника: если в исходном списке меньше 300 — сохраняются все; иначе примерно четверть (каждая 4‑я строка), но не более 300. Учитываются только строки с конфигурациями протоколов **vless**, **trojan**, **vmess**, **ss**, **hy2**. Списки **№1–№26** — [AvenCores/goida-vpn-configs](https://github.com/AvenCores/goida-vpn-configs) (для обхода — №26). Списки **№27–№34** — [igareck/vpn-configs-for-russia](https://github.com/igareck/vpn-configs-for-russia): чёрные и белые списки (CIDR/SNI для РФ). **№1.1–№1.26** — полные списки AvenCores (не рекомендовано: могут вызывать тормоза устройства).
+В каждом файле — не более 300 конфигов из соответствующего источника: если в исходном списке меньше 300 — сохраняются все; иначе примерно четверть (каждая 4‑я строка), но не более 300. Учитываются только строки с конфигурациями протоколов **vless**, **trojan**, **vmess**, **ss**, **hy2**. Списки **№1–№26** — [AvenCores/goida-vpn-configs](https://github.com/AvenCores/goida-vpn-configs) (для обхода — №26). Списки **№27–№34** — [igareck/vpn-configs-for-russia](https://github.com/igareck/vpn-configs-for-russia): чёрные и белые списки (CIDR/SNI для РФ). **№1.1, №2.2, …, №26.26** — полные списки по каждому источнику 1–26; при наличии в источнике больше 300 конфигов сохраняются также полные **№27.27–№34.34** (не рекомендовано: могут вызывать тормоза устройства).
+
+Базовый URL: `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/`
 
 | № | Raw-ссылка |
 |---|------------|
-| 1 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.txt` |
-| 2 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/2.txt` |
-| 3 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/3.txt` |
-| 4 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/4.txt` |
-| 5 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/5.txt` |
-| 6 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/6.txt` |
-| 7 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/7.txt` |
-| 8 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/8.txt` |
-| 9 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/9.txt` |
-| 10 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/10.txt` |
-| 11 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/11.txt` |
-| 12 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/12.txt` |
-| 13 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/13.txt` |
-| 14 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/14.txt` |
-| 15 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/15.txt` |
-| 16 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/16.txt` |
-| 17 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/17.txt` |
-| 18 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/18.txt` |
-| 19 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/19.txt` |
-| 20 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/20.txt` |
-| 21 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/21.txt` |
-| 22 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/22.txt` |
-| 23 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/23.txt` |
-| 24 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/24.txt` |
-| 25 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/25.txt` |
-| 26 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/26.txt` |
-| 27 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/27.txt` |
-| 28 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/28.txt` |
-| 29 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/29.txt` |
-| 30 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/30.txt` |
-| 31 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/31.txt` |
-| 32 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/32.txt` |
-| 33 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/33.txt` |
-| 34 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/34.txt` |
-| 1.1 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.1.txt` |
-| 1.2 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.2.txt` |
-| 1.3 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.3.txt` |
-| 1.4 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.4.txt` |
-| 1.5 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.5.txt` |
-| 1.6 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.6.txt` |
-| 1.7 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.7.txt` |
-| 1.8 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.8.txt` |
-| 1.9 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.9.txt` |
-| 1.10 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.10.txt` |
-| 1.11 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.11.txt` |
-| 1.12 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.12.txt` |
-| 1.13 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.13.txt` |
-| 1.14 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.14.txt` |
-| 1.15 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.15.txt` |
-| 1.16 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.16.txt` |
-| 1.17 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.17.txt` |
-| 1.18 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.18.txt` |
-| 1.19 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.19.txt` |
-| 1.20 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.20.txt` |
-| 1.21 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.21.txt` |
-| 1.22 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.22.txt` |
-| 1.23 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.23.txt` |
-| 1.24 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.24.txt` |
-| 1.25 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.25.txt` |
-| 1.26 | `https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/1.26.txt` |
+| 1 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/1.txt` |
+| 2 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/2.txt` |
+| 3 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/3.txt` |
+| 4 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/4.txt` |
+| 5 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/5.txt` |
+| 6 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/6.txt` |
+| 7 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/7.txt` |
+| 8 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/8.txt` |
+| 9 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/9.txt` |
+| 10 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/10.txt` |
+| 11 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/11.txt` |
+| 12 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/12.txt` |
+| 13 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/13.txt` |
+| 14 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/14.txt` |
+| 15 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/15.txt` |
+| 16 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/16.txt` |
+| 17 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/17.txt` |
+| 18 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/18.txt` |
+| 19 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/19.txt` |
+| 20 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/20.txt` |
+| 21 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/21.txt` |
+| 22 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/22.txt` |
+| 23 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/23.txt` |
+| 24 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/24.txt` |
+| 25 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/25.txt` |
+| 26 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/26.txt` |
+| 27 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/27.txt` |
+| 28 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/28.txt` |
+| 29 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/29.txt` |
+| 30 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/30.txt` |
+| 31 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/31.txt` |
+| 32 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/32.txt` |
+| 33 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/33.txt` |
+| 34 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/34.txt` |
+| 1.1 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/1.1.txt` |
+| 2.2 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/2.2.txt` |
+| 3.3 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/3.3.txt` |
+| 4.4 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/4.4.txt` |
+| 5.5 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/5.5.txt` |
+| 6.6 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/6.6.txt` |
+| 7.7 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/7.7.txt` |
+| 8.8 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/8.8.txt` |
+| 9.9 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/9.9.txt` |
+| 10.10 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/10.10.txt` |
+| 11.11 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/11.11.txt` |
+| 12.12 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/12.12.txt` |
+| 13.13 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/13.13.txt` |
+| 14.14 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/14.14.txt` |
+| 15.15 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/15.15.txt` |
+| 16.16 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/16.16.txt` |
+| 17.17 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/17.17.txt` |
+| 18.18 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/18.18.txt` |
+| 19.19 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/19.19.txt` |
+| 20.20 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/20.20.txt` |
+| 21.21 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/21.21.txt` |
+| 22.22 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/22.22.txt` |
+| 23.23 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/23.23.txt` |
+| 24.24 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/24.24.txt` |
+| 25.25 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/25.25.txt` |
+| 26.26 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/26.26.txt` |
+| 27.27 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/27.27.txt` |
+| 28.28 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/28.28.txt` |
+| 29.29 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/29.29.txt` |
+| 30.30 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/30.30.txt` |
+| 31.31 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/31.31.txt` |
+| 32.32 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/32.32.txt` |
+| 33.33 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/33.33.txt` |
+| 34.34 | `https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/34.34.txt` |
 
 ---
 
@@ -166,42 +178,11 @@ README.md
 
 ---
 
-## 🔗 Полные списки (оригинал AvenCores)
+## 🔗 Полные списки (не рекомендовано)
 
 > **⚠️ Не рекомендовано.** Полные списки содержат тысячи серверов и **могут приводить к тормозам устройства, долгой загрузке и сбоям клиента.** Используйте только если нужен полный набор; для обычного использования — укороченные подписки выше.
 
-При необходимости **полный** список (без сокращения) — ссылки ниже. Источник: **[AvenCores/goida-vpn-configs](https://github.com/AvenCores/goida-vpn-configs)** (1–26). Полные списки для 27–34 — в [igareck/vpn-configs-for-russia](https://github.com/igareck/vpn-configs-for-russia).
-
-### Raw-ссылки на полные подписки (1–26)
-
-| № | Описание | Raw-ссылка |
-|---|----------|------------|
-| 1 | OpenRay | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/1.txt` |
-| 2 | 5ubscrpt10n | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/2.txt` |
-| 3 | proxy-minging | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/3.txt` |
-| 4 | AutoVPN | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/4.txt` |
-| 5 | V2RayCFGDumper | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/5.txt` |
-| 6 | openproxylist | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/6.txt` |
-| 7 | v2ray-configs | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/7.txt` |
-| 8 | cid-vpn-config | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/8.txt` |
-| 9 | telegram-v2ray-configs | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/9.txt` |
-| 10 | .proxy | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/10.txt` |
-| 11 | V2rayCollector | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/11.txt` |
-| 12 | .proxy | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/12.txt` |
-| 13 | config | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/13.txt` |
-| 14 | Mineral | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/14.txt` |
-| 15 | Config-Collector | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/15.txt` |
-| 16 | Free-servers | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/16.txt` |
-| 17 | V2rayCollector_Py | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/17.txt` |
-| 18 | v2ray | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/18.txt` |
-| 19 | V2rayCollector | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/19.txt` |
-| 20 | Proxy-List | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/20.txt` |
-| 21 | kamaji | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/21.txt` |
-| 22 | xray-config-toolkit | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/22.txt` |
-| 23 | Xray | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/23.txt` |
-| 24 | STRUGOV | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/24.txt` |
-| 25 | V2RayConfig | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/25.txt` |
-| 26 | Обход | `https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/26.txt` |
+Полные подписки **только для источников 1–26**: №1.2, №2.2, …, №26.2 — в таблице в разделе [Ссылки на подписки](#ссылки-на-подписки-1-34). Оригиналы: [AvenCores/goida-vpn-configs](https://github.com/AvenCores/goida-vpn-configs) (1–26), [igareck/vpn-configs-for-russia](https://github.com/igareck/vpn-configs-for-russia) (27–34).
 
 ---
 
@@ -209,7 +190,7 @@ README.md
 
 Обновление укороченных списков выполняется **автоматически**. Workflow GitHub Actions обращается к репозиториям AvenCores/goida-vpn-configs и igareck/vpn-configs-for-russia **раз в минуту**; как только там обновляются исходные конфиги, в течение минуты изменения попадают и в файлы данного репозитория. Таким образом, локальные списки в папке `configs/` актуализируются сразу после обновления исходных источников.
 
-Технически: для списков 1–26 загружаются файлы из AvenCores/goida-vpn-configs; для списков 27–34 — из igareck/vpn-configs-for-russia. Из каждого файла отбираются строки с конфигурациями протоколов vless, trojan, vmess, ss, hy2; **если конфигов меньше 300 — сохраняются все (без 1/4)**; иначе берётся каждая 4‑я строка (но не более 300); результат записывается в `configs/1.txt` … `configs/34.txt`. Собственный сервер не требуется, обработка выполняется на инфраструктуре GitHub.
+Технически: для источников 1–26 загружаются файлы из AvenCores/goida-vpn-configs; для 27–34 — из igareck/vpn-configs-for-russia. Короткие списки пишутся в `configs/1.1.txt` … `configs/26.1.txt` и `configs/27.txt` … `configs/34.txt`; полные (только 1–26) — в `configs/1.2.txt` … `configs/26.2.txt`. Собственный сервер не требуется, обработка выполняется на инфраструктуре GitHub.
 
 ---
 
