@@ -1,4 +1,4 @@
-# Подписка 33 | CIDR VK/Ya/CDN/Beeline (igareck) (igareck/vpn-configs-for-russia)
+# Подписка 33 | CIDR VK/Ya/CDN/Beeline (igareck)
 vless://b39aca97-e9f2-4a94-b87f-8748299846cd@84.201.128.76:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=random&pbk=66kZLshj9fxAIQA7NsABohNwgiOcY71enc6as_Frqw0&sid=3c1523da43287ec4&sni=smartcaptcha.yandexcloud.net&path=&host=&spx=/#%F0%9F%87%A6%F0%9F%87%B9%20Austria%20%5B%2ACIDR%5D%20YA
 vless://7bc30425-1c2f-4823-b629-90f599a4cbfe@109.120.191.92:1488?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&security=reality&sni=ads.x5.ru&type=tcp#%F0%9F%87%AA%F0%9F%87%AA%20Estonia%20%5B%2ACIDR%5D%20VK
 vless://7bc30425-1c2f-4823-b629-90f599a4cbfe@5.188.140.115:1488/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=ads.x5.ru&fp=chrome&security=reality&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sid=6ba85179e30d4fc2#%F0%9F%87%AA%F0%9F%87%AA%20Estonia%20%5B%2ACIDR%5D%20VK
