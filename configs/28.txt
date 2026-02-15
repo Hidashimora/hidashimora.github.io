@@ -1,4 +1,4 @@
-# Подписка 28 | VLESS все (чёрный список) (igareck/vpn-configs-for-russia)
+# Подписка 28 | VLESS все (чёрный) (igareck)
 vless://6202b230-417c-4d8e-b624-0f71afa9c75d@141.98.197.83:28245/?type=ws&encryption=none&flow=&host=sni.111000.indevs.in&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2&security=tls&sni=sni.111000.indevs.in&fp=chrome#%F0%9F%87%A8%F0%9F%87%A6%20Canada%2C%20Montreal%20%5BBL%5D
 vless://6202b230-417c-4d8e-b624-0f71afa9c75d@chatgpt.com:2053?encryption=none&security=tls&sni=sni.111000.indevs.in&type=ws&host=sni.111000.indevs.in&path=/?ed=2560#%F0%9F%87%A8%F0%9F%87%A6%20Canada%2C%20Montreal%20%5BBL%5D
 vless://6202b230-417c-4d8e-b624-0f71afa9c75d@175.29.22.17:35549?&security=tls&fp=chrome&sni=sni.111000.v6.navy&type=ws&headerType=none&host=sni.111000.v6.navy&path=%2F%3Fed%3D2560%26Telegram%F0%9F%87%A8%F0%9F%87%B3%20%40WangCai2#%F0%9F%87%A8%F0%9F%87%A6%20Canada%20%7C%20%F0%9F%8C%90%20Anycast-IP%20%7C%20%5BBL%5D

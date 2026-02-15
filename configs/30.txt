@@ -1,4 +1,4 @@
-# Подписка 30 | CIDR белый список mobile 1 (igareck) (igareck/vpn-configs-for-russia)
+# Подписка 30 | CIDR белый mobile 1 (igareck)
 vless://b39aca97-e9f2-4a94-b87f-8748299846cd@81.200.151.199:443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=KY8KUGcr79Ysw3QBwPX7nsRf0OEoTd8jF41eyIPQsn4&security=reality&sid=fce83b6352a65b4a&sni=ads.x5.ru&type=tcp#%F0%9F%87%A6%F0%9F%87%B9%20Austria%20%5B%2ACIDR%5D
 vless://b39aca97-e9f2-4a94-b87f-8748299846cd@81.denditop.site:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=random&pbk=KY8KUGcr79Ysw3QBwPX7nsRf0OEoTd8jF41eyIPQsn4&sid=fce83b6352a65b4a&sni=ads.x5.ru&path=&host=&spx=/#%F0%9F%87%A6%F0%9F%87%B9%20Austria%20%5B%2ACIDR%5D
 vless://b39aca97-e9f2-4a94-b87f-8748299846cd@81.200.151.139:443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=_clqzJ8ZkSG71dSLu5KfRB9NJf63uBbdlDFZ4hp1uBE&security=reality&sid=3d9bfa9202efd228&sni=m.vk.ru&type=tcp#%F0%9F%87%A6%F0%9F%87%B9%20Austria%20%7C%20%F0%9F%8C%90%20Anycast-IP%20%5B%2ACIDR%5D
