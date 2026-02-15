@@ -140,14 +140,15 @@
         displayTotal: 0,
         configs: [
           { id: '1.1' }, { id: '2.1' }, { id: '3.1' }, { id: '4.1' }, { id: '5.1' }, { id: '6.1' }, { id: '7.1' }, { id: '8.1' }, { id: '9.1' }, { id: '10.1' }, { id: '11.1' }, { id: '12.1' }, { id: '13.1' }, { id: '14.1' }, { id: '15.1' }, { id: '16.1' }, { id: '17.1' }, { id: '18.1' }, { id: '19.1' }, { id: '20.1' }, { id: '21.1' }, { id: '22.1' }, { id: '23.1' }, { id: '24.1' }, { id: '25.1' }, { id: '26.1' },
-          { id: 27 }, { id: 28 }, { id: 29 }, { id: 30 }, { id: 31 }, { id: 32 }, { id: 33 }, { id: 34 }
+          { id: 27 }, { id: '28.1' }, { id: 29 }, { id: 30 }, { id: 31 }, { id: '32.1' }, { id: '33.1' }, { id: 34 }
         ],
         fullConfigs: [
           { id: '1.2', name: 'OpenRay' }, { id: '2.2', name: '5ubscrpt10n' }, { id: '3.2', name: 'proxy-minging' }, { id: '4.2', name: 'AutoVPN' }, { id: '5.2', name: 'V2RayCFGDumper' },
           { id: '6.2', name: 'openproxylist' }, { id: '7.2', name: 'v2ray-configs' }, { id: '8.2', name: 'cid-vpn-config' }, { id: '9.2', name: 'telegram-v2ray-configs' }, { id: '10.2', name: '.proxy' },
           { id: '11.2', name: 'V2rayCollector' }, { id: '12.2', name: '.proxy' }, { id: '13.2', name: 'config' }, { id: '14.2', name: 'Mineral' }, { id: '15.2', name: 'Config-Collector' },
           { id: '16.2', name: 'Free-servers' }, { id: '17.2', name: 'V2rayCollector_Py' }, { id: '18.2', name: 'v2ray' }, { id: '19.2', name: 'V2rayCollector' }, { id: '20.2', name: 'Proxy-List' },
-          { id: '21.2', name: 'kamaji' }, { id: '22.2', name: 'xray-config-toolkit' }, { id: '23.2', name: 'Xray' }, { id: '24.2', name: 'STRUGOV' }, { id: '25.2', name: 'V2RayConfig' }, { id: '26.2', name: 'Обход' }
+          { id: '21.2', name: 'kamaji' }, { id: '22.2', name: 'xray-config-toolkit' }, { id: '23.2', name: 'Xray' }, { id: '24.2', name: 'STRUGOV' }, { id: '25.2', name: 'V2RayConfig' }, { id: '26.2', name: 'Обход' },
+          { id: '28.2', name: 'VLESS все (чёрный)' }, { id: '32.2', name: 'CIDR белый все' }, { id: '33.2', name: 'CIDR VK/Ya/CDN/Beeline' }
         ],
         sourceNum(c) { const id = String(c.id); return parseInt(id.split('.')[0], 10) || 0; },
         get filtered() {
@@ -290,7 +291,7 @@
         <ul class="space-y-3 text-sm">
           <li class="rounded-xl border border-cyan-500/20 bg-cyan-500/5 p-3">
             <span class="font-semibold text-cyan-400">Все</span>
-            <p class="mt-1 text-[#a1a1aa]">Все 34 укороченных подписки (конфиги 1–34).</p>
+            <p class="mt-1 text-[#a1a1aa]">Все укороченные подписки: 1.1–26.1, 27–34 (в т.ч. 28.1, 32.1, 33.1).</p>
           </li>
           <li class="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3">
             <span class="font-semibold text-amber-400">Рекомендованные</span>
@@ -310,7 +311,7 @@
           </li>
           <li class="rounded-xl border border-rose-500/20 bg-rose-500/5 p-3">
             <span class="font-semibold text-rose-300">Полные (не рекоменд.)</span>
-            <p class="mt-1 text-[#a1a1aa]">Полные списки только для источников 1–26: №1.2, №2.2, …, №26.2. Тысячи серверов — могут тормозить устройство.</p>
+            <p class="mt-1 text-[#a1a1aa]">Полные списки: №1.2–№26.2 (источники 1–26) и №28.2, №32.2, №33.2 (igareck). Тысячи серверов — могут тормозить устройство.</p>
           </li>
         </ul>
       </div>

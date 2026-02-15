@@ -56,7 +56,7 @@ jobs:
             fi
           done
 
-      - name: Fetch igareck/vpn-configs-for-russia (27–34), short only
+      - name: Fetch igareck/vpn-configs-for-russia (27–34); 28/32/33 as N.1+N.2
         run: |
           BASE="https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/main"
           MAX=300
@@ -82,13 +82,26 @@ jobs:
               fi
             fi
             if [ ! -s new.txt ] && [ -s filtered.txt ]; then cp filtered.txt new.txt; fi
-            if [ -s new.txt ]; then
-              title=$(echo "$titles" | cut -d'|' -f$((n-26)))
-              echo "# Подписка $n | $title (igareck)" > "configs/${n}.txt"
-              cat new.txt >> "configs/${n}.txt"
-              echo "  configs/${n}.txt: $(wc -l < new.txt) servers (from ${name})"
+            title=$(echo "$titles" | cut -d'|' -f$((n-26)))
+            if [ "$n" -eq 28 ] || [ "$n" -eq 32 ] || [ "$n" -eq 33 ]; then
+              if [ -s new.txt ]; then
+                echo "# Подписка ${n}.1 | $title (igareck, короткий)" > "configs/${n}.1.txt"
+                cat new.txt >> "configs/${n}.1.txt"
+                echo "  configs/${n}.1.txt: $(wc -l < new.txt) servers (from ${name})"
+              fi
+              if [ -s filtered.txt ]; then
+                echo "# Подписка ${n}.2 | $title (igareck, полный)" > "configs/${n}.2.txt"
+                cat filtered.txt >> "configs/${n}.2.txt"
+                echo "  configs/${n}.2.txt: $(wc -l < filtered.txt) servers (full)"
+              fi
             else
-              echo "  configs/${n}.txt: no configs, skipped (${name})"
+              if [ -s new.txt ]; then
+                echo "# Подписка $n | $title (igareck)" > "configs/${n}.txt"
+                cat new.txt >> "configs/${n}.txt"
+                echo "  configs/${n}.txt: $(wc -l < new.txt) servers (from ${name})"
+              else
+                echo "  configs/${n}.txt: no configs, skipped (${name})"
+              fi
             fi
             n=$((n + 1))
           done
@@ -120,12 +133,20 @@ jobs:
               echo "  \"$key\": ${c:-0}," >> configs/counts.json
             done
           done
-          for i in $(seq 27 34); do
+          for i in 27 29 30 31 34; do
             c=0
             [ -f "configs/${i}.txt" ] && c=$(grep -cE '^(vless|trojan|vmess|ss|hy2)://' "configs/${i}.txt" 2>/dev/null || true)
             echo "  \"$i\": ${c:-0}," >> configs/counts.json
           done
-          total=$( ( for i in $(seq 1 26); do for s in 1 2; do [ -f "configs/${i}.${s}.txt" ] && grep -E '^(vless|trojan|vmess|ss|hy2)://' "configs/${i}.${s}.txt"; done; done; for i in $(seq 27 34); do [ -f "configs/${i}.txt" ] && grep -E '^(vless|trojan|vmess|ss|hy2)://' "configs/${i}.txt"; done ) 2>/dev/null | sort -u | wc -l)
+          for i in 28 32 33; do
+            for s in 1 2; do
+              key="${i}.${s}"
+              c=0
+              [ -f "configs/${key}.txt" ] && c=$(grep -cE '^(vless|trojan|vmess|ss|hy2)://' "configs/${key}.txt" 2>/dev/null || true)
+              echo "  \"$key\": ${c:-0}," >> configs/counts.json
+            done
+          done
+          total=$( ( for i in $(seq 1 26); do for s in 1 2; do [ -f "configs/${i}.${s}.txt" ] && grep -E '^(vless|trojan|vmess|ss|hy2)://' "configs/${i}.${s}.txt"; done; done; for i in 27 29 30 31 34; do [ -f "configs/${i}.txt" ] && grep -E '^(vless|trojan|vmess|ss|hy2)://' "configs/${i}.txt"; done; for i in 28 32 33; do for s in 1 2; do [ -f "configs/${i}.${s}.txt" ] && grep -E '^(vless|trojan|vmess|ss|hy2)://' "configs/${i}.${s}.txt"; done; done ) 2>/dev/null | sort -u | wc -l)
           echo "  \"totalUnique\": $total" >> configs/counts.json
           echo '}' >> configs/counts.json
           echo "  totalUnique: $total servers (no duplicates)"
