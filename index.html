@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0d">
   <title>Free configs</title>
   <meta name="description" content="Укороченные VPN-подписки V2Ray, VLESS, Hysteria, Trojan, VMess. Обновление раз в минуту.">
   <link rel="icon" href="icon.svg.svg" type="image/svg+xml">
@@ -71,12 +72,20 @@
       .animate-card-in { animation: none; opacity: 1; }
       .counter-pop { animation: none; }
     }
+    @media (max-width: 640px) {
+      .url-box { font-size: 10px; }
+      .card-glow { padding: 0.875rem 1rem; }
+    }
+    @supports (padding: env(safe-area-inset-bottom)) {
+      body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+      main { padding-bottom: env(safe-area-inset-bottom); }
+    }
   </style>
 </head>
 <body class="min-h-screen bg-mesh font-sans antialiased overflow-x-hidden"
       x-data="{
         filterType: 'all',
-        base: 'https://raw.githubusercontent.com/hidashimora/hidashimora.github.io/main/configs/',
+        base: 'https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/',
         recommended: [1, 6, 22, 23, 24, 25],
         obhod: [26, 27, 28, 29, 30, 31, 32, 33, 34],
         blackList: [27, 28, 29],
@@ -135,9 +144,9 @@
         }
       }"
       x-init="
-        fetch(base + 'counts.json').then(r => r.json()).then(data => {
-          counts = data;
-          const target = data.totalUnique || 0;
+        fetch(base + 'counts.json?t=' + Date.now()).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(data => {
+          if (data && typeof data === 'object') { counts = data; }
+          const target = (data && typeof data.totalUnique === 'number') ? data.totalUnique : 0;
           const duration = 1600;
           const start = performance.now();
           const easeOut = t => 1 - Math.pow(1 - t, 2);
@@ -148,7 +157,7 @@
             else displayTotal = target;
           };
           requestAnimationFrame(step);
-        }).catch(() => {});
+        }).catch(() => { displayTotal = 0; });
       ">
   <header class="sticky top-0 z-50 border-b border-white/5 bg-[#0a0a0d]/90 backdrop-blur-md">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -167,47 +176,51 @@
       <p class="text-[#71717a] text-sm sm:text-base max-w-xl mx-auto leading-relaxed mb-6">
         Один клик — ссылка в буфере. Вставьте в клиент и подключайтесь.
       </p>
-      <div class="inline-flex flex-col items-center gap-1 rounded-2xl border border-cyan-500/20 bg-cyan-500/5 px-8 py-5">
-        <span class="text-xs font-medium uppercase tracking-wider text-cyan-400/80">Всего (без повторов)</span>
-        <span class="text-4xl sm:text-5xl font-bold tabular-nums text-cyan-400" x-text="displayTotal.toLocaleString('ru-RU') + ' ' + serversWord(displayTotal)"></span>
+      <div class="inline-flex flex-col items-center gap-1 rounded-2xl border border-cyan-500/20 bg-cyan-500/5 px-6 py-4 sm:px-8 sm:py-5 w-full max-w-sm sm:w-auto">
+        <span class="text-[10px] sm:text-xs font-medium uppercase tracking-wider text-cyan-400/80">Всего (без повторов)</span>
+        <span class="text-3xl sm:text-5xl font-bold tabular-nums text-cyan-400" x-text="(typeof displayTotal === 'number' ? displayTotal.toLocaleString('ru-RU') : '0') + ' ' + serversWord(displayTotal)"></span>
       </div>
     </section>
 
-    <nav class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-8" aria-label="Фильтр списков">
+    <nav class="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-6 sm:mb-8" aria-label="Фильтр списков">
       <button @click="filterType = 'all'"
               :class="filterType === 'all' ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
-              class="px-4 py-2 rounded-lg text-sm font-medium border transition-all duration-200">
+              class="px-4 py-2.5 sm:py-2 rounded-lg text-sm font-medium border transition-all duration-200 min-h-[44px] sm:min-h-0 touch-manipulation">
         Все
       </button>
       <button @click="filterType = 'recommended'"
               :class="filterType === 'recommended' ? 'bg-amber-500/20 text-amber-400 border-amber-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
-              class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
+              class="px-3 py-2.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5 min-h-[44px] sm:min-h-0 touch-manipulation">
         <i class="fa-solid fa-star text-[10px]"></i>
-        Рекомендованные
+        <span class="hidden sm:inline">Рекомендованные</span>
+        <span class="sm:hidden">Рекоменд.</span>
       </button>
       <button @click="filterType = 'obhod'"
               :class="filterType === 'obhod' ? 'bg-violet-500/20 text-violet-400 border-violet-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
-              class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
+              class="px-3 py-2.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5 min-h-[44px] sm:min-h-0 touch-manipulation">
         <i class="fa-solid fa-unlock-keyhole text-[10px]"></i>
         Обход
       </button>
       <button @click="filterType = 'black'"
               :class="filterType === 'black' ? 'bg-zinc-500/20 text-zinc-300 border-zinc-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
-              class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
+              class="px-3 py-2.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5 min-h-[44px] sm:min-h-0 touch-manipulation">
         <i class="fa-solid fa-circle text-[8px]"></i>
-        Чёрный список
+        <span class="hidden sm:inline">Чёрный список</span>
+        <span class="sm:hidden">Чёрный</span>
       </button>
       <button @click="filterType = 'white'"
               :class="filterType === 'white' ? 'bg-sky-500/20 text-sky-300 border-sky-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
-              class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
+              class="px-3 py-2.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5 min-h-[44px] sm:min-h-0 touch-manipulation">
         <i class="fa-regular fa-circle text-[8px]"></i>
-        Белый список
+        <span class="hidden sm:inline">Белый список</span>
+        <span class="sm:hidden">Белый</span>
       </button>
       <button @click="filterType = 'full'"
               :class="filterType === 'full' ? 'bg-rose-500/20 text-rose-300 border-rose-500/40' : 'bg-white/5 text-[#a1a1aa] border-white/10 hover:bg-white/10 hover:text-[#e4e4e7]'"
-              class="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5">
+              class="px-3 py-2.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all duration-200 flex items-center gap-1.5 min-h-[44px] sm:min-h-0 touch-manipulation">
         <i class="fa-solid fa-list text-[10px]"></i>
-        Полные (не рекоменд.)
+        <span class="hidden sm:inline">Полные (не рекоменд.)</span>
+        <span class="sm:hidden">Полные</span>
       </button>
     </nav>
 
@@ -226,7 +239,7 @@
                   <span x-show="config.id >= 30 && config.id <= 34">Белый список — обход ограничений</span>
                 </span>
                 <span class="text-xs text-cyan-400/90 mt-1 inline-block" x-show="getCount(config.id) !== '—'">
-                  <i class="fa-solid fa-server mr-1"></i><span x-text="getCount(config.id) + ' ' + serversWord(Number(getCount(config.id)))"></span>
+                  <i class="fa-solid fa-server mr-1" aria-hidden="true"></i><span x-text="getCount(config.id) + ' ' + serversWord(Number(getCount(config.id)) || 0)"></span>
                 </span>
               </div>
               <div class="flex flex-wrap gap-1.5 shrink-0">
@@ -247,14 +260,14 @@
             <button type="button"
                     :data-url="base + config.id + '.txt'"
                     @click="copyUrl($event.currentTarget.getAttribute('data-url'), $event.currentTarget)"
-                    class="shrink-0 w-full sm:w-auto py-2.5 px-4 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 font-medium text-sm flex items-center justify-center gap-2 border border-cyan-500/30 transition-all duration-200 active:scale-[0.98]">
+                    class="shrink-0 w-full sm:w-auto py-3 sm:py-2.5 px-4 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-400 font-medium text-sm flex items-center justify-center gap-2 border border-cyan-500/30 transition-all duration-200 active:scale-[0.98] min-h-[44px] sm:min-h-0 touch-manipulation">
               <i class="fa-regular fa-copy"></i>
               <i class="fa-solid fa-check hidden"></i>
               <span class="copy-text">Скопировать</span>
             </button>
           </div>
-          <div class="mt-3 pt-3 border-t border-white/5">
-            <p class="url-box text-[11px] sm:text-xs text-[#71717a] leading-relaxed" x-text="base + config.id + '.txt'"></p>
+          <div class="mt-3 pt-3 border-t border-white/5 overflow-x-auto">
+            <p class="url-box text-[10px] sm:text-xs text-[#71717a] leading-relaxed" x-text="base + config.id + '.txt'"></p>
           </div>
         </div>
       </template>
