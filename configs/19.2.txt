@@ -1,5 +1,5 @@
 # Подписка 19.2.txt | V2rayCollector (полный)
-trojan://bcacaab-baca-baca-dbac-accaabbcbacb@127.0.0.1:1080?security=tls&type=tcp#%F0%9F%94%84%20LATEST-UPDATE%20%F0%9F%93%85%20Wed-18-Feb-2026 16:23
+trojan://bcacaab-baca-baca-dbac-accaabbcbacb@127.0.0.1:1080?security=tls&type=tcp#%F0%9F%94%84%20LATEST-UPDATE%20%F0%9F%93%85%20Wed-18-Feb-2026 17:35
 vless://99a5747a-106d-4f3c-b199-2e3ae09874fa@cx.tuurkderag.top:2053?encryption=none&amp;security=none&amp;type=tcp&amp;headerType=none#telegram%20%F0%9F%8C%9F%20dailyv2ry
 vless://d45a5559-03fe-46d0-911d-03d3647e9502@193.151.152.216:1617?encryption=none&amp;security=none&amp;type=tcp&amp;headerType=http&amp;host=mci.ir#telegram%20%F0%9F%9A%80%20dailyv2ry
 vless://3655caf2-a709-4e44-f353-773ddda24d7b@3.127.108.57:36512?encryption=none&amp;security=none&amp;type=tcp&amp;headerType=none#telegram%20%E2%9A%A1%EF%B8%8F%20dailyv2ry
