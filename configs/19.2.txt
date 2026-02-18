@@ -1,5 +1,5 @@
 # Подписка 19.2.txt | V2rayCollector (полный)
-trojan://bcacaab-baca-baca-dbac-accaabbcbacb@127.0.0.1:1080?security=tls&type=tcp#%F0%9F%94%84%20LATEST-UPDATE%20%F0%9F%93%85%20Wed-18-Feb-2026 22:15
+trojan://bcacaab-baca-baca-dbac-accaabbcbacb@127.0.0.1:1080?security=tls&type=tcp#%F0%9F%94%84%20LATEST-UPDATE%20%F0%9F%93%85%20Wed-18-Feb-2026 23:14
 vless://1738e694-c8e3-46c1-bc15-b8136d3b6338@theip.iplist.cryo-networks.com:9560?encryption=none&amp;security=none&amp;type=tcp&amp;headerType=http&amp;host=play.google.com#telegram%20%E2%98%82%EF%B8%8F%20dailyv2ry
 vless://3e7f67de-648e-4871-b51a-a225214d41ee@47.80.13.85:443?encryption=none&amp;security=reality&amp;sni=api.company-target.com&amp;fp=chrome&amp;pbk=TRP10HqKUXEQ3O-cfsq93DycfBmbJe9KM36yvSa8Mmw&amp;type=tcp&amp;headerType=none&amp;host=api.company-target.com#telegram%20%F0%9F%8D%8A%20dailyv2ry
 vless://6da3c288-d649-4d19-8006-52061f3335ab@2.144.22.43:50190?encryption=none&amp;security=none&amp;type=tcp&amp;headerType=http#%F0%9F%91%89%F0%9F%86%94%40v2ray_configs_pool%F0%9F%93%A1%F0%9F%87%AE%F0%9F%87%B7%C2%AE%EF%B8%8FIran%C2%A9%EF%B8%8FTehr%C4%81n%F0%9F%85%BF%EF%B8%8Fping%3A307.24ms%202%20dailyv2ry
