@@ -1,5 +1,5 @@
 # Подписка 19.2.txt | V2rayCollector (полный)
-trojan://bcacaab-baca-baca-dbac-accaabbcbacb@127.0.0.1:1080?security=tls&type=tcp#%F0%9F%94%84%20LATEST-UPDATE%20%F0%9F%93%85%20Sun-22-Feb-2026 01:48
+trojan://bcacaab-baca-baca-dbac-accaabbcbacb@127.0.0.1:1080?security=tls&type=tcp#%F0%9F%94%84%20LATEST-UPDATE%20%F0%9F%93%85%20Sun-22-Feb-2026 02:49
 vless://013d79ce-d692-42f0-87cf-23fd722fc839@goavmdu.tinshopmarket.ir:25553?encryption=none&amp;headerType=http&amp;host=bmw.com&amp;security=none&amp;type=tcp#6
 vless://fe971ca6-7e7e-40fc-8cc6-341043c09770@clyde.ns.cloudflare.com:443?ed=2560&amp;eh=Sec-WebSocket-Protocol&amp;encryption=none&amp;host=639070217957410233.mustang-perma.info&amp;path=%2Fcvpocvws&amp;security=tls&amp;sni=639070217957410233.mustang-perma.info&amp;type=ws#horizon
 vless://e999db7a-1b17-4da6-bc37-c9fa24af2e93@hd.pelatiposi.info:2087?alpn=h3h2&amp;encryption=none&amp;security=tls&amp;sni=splash.VaRtAlReX.iNfO&amp;type=grpc#2087
